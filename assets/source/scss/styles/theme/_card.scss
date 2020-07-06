@@ -1,0 +1,54 @@
+/**
+ * User Card
+ */
+.crt-card {
+  padding: 30px 20px 20px 20px;
+}
+
+.crt-card-info {
+  margin-top: 33px;
+
+  h2 {
+    font-size: 1.625em;
+    margin-bottom: 0.688em;
+  }
+
+  .crt-social {
+    margin-bottom: 0;
+  }
+}
+
+// Card Wide Mode
+@media (min-width: $screen-md) {
+  .crt-card-wide {
+    width: 100%;
+    display: table;
+    padding: 50px 6%;
+
+    .crt-card-avatar,
+    .crt-card-info {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .crt-card-avatar {
+      width: 195px;
+      max-width: 195px;
+    }
+
+    .crt-social {
+      margin-top: 30px;
+    }
+
+    .crt-card-info {
+      text-align: left;
+      padding-left: 8%;
+      padding-top: 1.250em;
+
+      h2 {
+        font-size: 2.688em;
+        margin-bottom: 0.2em;
+      }
+    }
+  }
+}

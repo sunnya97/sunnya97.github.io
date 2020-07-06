@@ -34,3 +34,55 @@
     </div>
   </div>
 </div>
+
+
+<article class="post hentry">
+  <div class="post-media">
+      <a href="{{post.url | prepend: site.baseurl}}" rel="bookmark">
+          <figure class="post-figure">
+              <img src="{{site.baseurl}}{{post.image}}" alt="{{post.title}}">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="{{ page.date | date_to_xmlschema }}">{{post.date | date: '%b %d, %Y'}}</time>
+                            <time class="post-date updated" datetime="{{ page.date | date_to_xmlschema }}">{{post.date | date: '%b %d, %Y'}}</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href="{{site.baseurl}}"
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- <div class="post-content entry-content editor clearfix clear-mrg">
+          <p>Your brand is the core of your marketing, the central theme around your products and services.
+              Your brand is not your Logo or your Company Name unless of course you are Microsoft or the
+              Yellow Pages online directory.</p>
+      </div> -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top brd-btm clearfix">
+              <div class="post-footer-info">
+
+                {% if page.tags.size >= 1 %}
+                  <span class="post-cat-links"><span class="screen-reader-text">Categories</span>
+                  {% for tag in page.tags %}
+                    <a href="{{ site.baseurl }}/blog/tag/{{ tag }}" rel="category tag">{{ tag }}</a>&nbsp;,&nbsp;
+                  {% endfor %}
+                {% endif %}
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="single-image.html" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->

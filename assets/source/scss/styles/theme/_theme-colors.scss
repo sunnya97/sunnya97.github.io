@@ -1,0 +1,229 @@
+/**
+ * Color Scheme
+ */
+
+/* Color Primary */
+.text-primary,
+.icon-list .crt-icon,
+.post-title a:hover,
+.crt-nav-type1 .crt-nav li.current a {
+  color: $color-primary;
+}
+
+mark,
+.bg-primary,
+.btn-primary,
+.bg-primary.text-dropcup-sq,
+.raiting-circle .fill,
+.progress-bullets .bullet.fill,
+.tabs .tabs-menu li.active a,
+.tabs .tabs-menu li a:hover,
+.togglebox-header:before,
+.accordion-header:before,
+.education:before,
+.education-date,
+#crt-main-nav .sub-menu li > a:hover,
+#crt-main-nav .sub-menu .current > a,
+#crt-main-nav-sm .sub-menu:before {
+  background-color: $color-primary;
+}
+
+.btn-share,
+.brd-primary,
+#crt-nav-sm li.current a,
+.progress-bullets .bullet,
+.education-date:after,
+.education-date:before {
+  border-color: $color-primary;
+}
+
+::-moz-selection {
+  background-color: $color-primary;
+}
+
+::selection {
+  background-color: $color-primary;
+}
+
+#crt-bg-shape-2 polygon {
+  fill: $color-primary;
+}
+
+/* Color Darkest */
+body,
+h1, h2, h3, h4, h5, h6,
+blockquote.quote-top:before,
+blockquote.quote-side:before,
+.form-item,
+.crt-logo,
+.btn-primary,
+.page-numbers:hover,
+.page-numbers.current,
+.tabs .tabs-menu a,
+
+.crt-nav a,
+.crt-tooltip,
+#crt-main-nav .sub-menu a,
+#crt-main-nav > ul > li > a:hover,
+#crt-main-nav > ul > li.current > a,
+#crt-main-nav-sm li > a:hover,
+#crt-main-nav-sm li.current a,
+.pf-filter button,
+.search-title span,
+
+.widget_tag_cloud .tagcloud a,
+.widget_recent_entries li > a
+.widget_categories li a,
+.widget_posts_entries li h3,
+.widget_posts_entries a {
+  color: $color-darkest;
+}
+
+::-moz-selection {
+  color: $color-darkest;
+}
+
+::selection {
+  color: $color-darkest;
+}
+
+::-webkit-input-placeholder {
+  color: $color-darkest;
+}
+
+::-moz-placeholder {
+  color: $color-darkest;
+}
+
+:-ms-input-placeholder {
+  color: $color-darkest;
+}
+
+:-moz-placeholder {
+  color: $color-darkest;
+}
+
+.text-dropcup-sq,
+.styled-ul li:before,
+.education-box:before {
+  background-color: $color-darkest;
+}
+
+/* Color Darker */
+.text-muted,
+.post-content,
+.page-numbers,
+.education-company,
+.ref-author span,
+table > thead > tr > th,
+.styled-ul > li > ul ul,
+#crt-main-nav > ul > li > a,
+#crt-main-nav-sm a,
+.cr-carousel .slick-next:before,
+.cr-carousel .slick-prev:before,
+
+.widget_categories li,
+.post-category-comment a {
+  color: $color-darker;
+}
+
+.styled-ul > li > ul ul li:before {
+  background-color: $color-light;
+}
+
+/* Color Dark */
+hr,
+th,
+td,
+blockquote,
+.brd-btm,
+.post-tags a,
+.reference-box,
+.crt-head-inner,
+.crt-paper,
+.crt-paper-layers:after,
+.crt-paper-layers:before,
+#comments .comment-list,
+#comments .comment-body,
+.crt-nav-type1 .crt-nav-cont,
+.tabs .tabs-menu,
+.tabs-vertical:before,
+.page-category .post-footer,
+.search-for,
+
+.widget ul li,
+.widget ol li,
+.widget_tag_cloud .tagcloud a,
+.post-category-comment a {
+  border-color: $color-dark;
+}
+
+.crt-nav-btm:after {
+  background-color: $color-dark;
+}
+
+.post-line {
+  color: $color-dark;
+}
+
+#crt-bg-shape-1 polygon {
+  fill: $color-dark;
+}
+
+/* Color Light */
+body,
+.form-item,
+.search-form .search-field,
+#crt-sidebar-btn {
+  background-color: $color-light;
+}
+
+/* Color Lighter */
+.text-dropcup-sq {
+  color: $color-lighter;
+}
+
+.crt-head-inner,
+.crt-card-footer,
+blockquote.quote-top:before,
+blockquote.quote-side:before,
+.tooltip:after,
+.education-box:last-child:after,
+.crt-nav-type1 .crt-nav-cont,
+#crt-main-nav .sub-menu,
+.crt-tooltip:after,
+#crt-sidebar,
+.pf-popup-content,
+.cr-carousel .slick-next,
+.cr-carousel .slick-prev,
+.crt-side-box-item,
+#crt-container,
+.crt-paper,
+.crt-paper-layers:after,
+.crt-paper-layers:before {
+  background-color: $color-lighter;
+}
+
+.tooltip:before {
+  border-top-color: $color-lighter;
+}
+
+.crt-nav-type1 .crt-nav-btm,
+.crt-tooltip.arrow-right:before {
+  border-left-color: $color-lighter;
+}
+
+.crt-tooltip.arrow-left:before {
+  border-right-color: $color-lighter;
+}
+
+/* Buttons */
+.btn-default {
+  color: $btn-default-text;
+  background-color: $btn-default-bg;
+}
+
+.btn-light {
+  color: $btn-light-text;
+  background-color: $btn-light-bg;
+}

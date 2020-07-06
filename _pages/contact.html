@@ -3,35 +3,65 @@ layout: page
 title: Contact Me
 permalink: /contact/
 ---
-<div class="form-container">
-  {% if site.contact.description %}
-  <p class="contact-description">{{site.contact.description}}</p>
-  {% endif %}
-  
-  <p class="contact-description">If you'd like to schedule a call, please use this:</p>
-  {% include calendly.html %}
 
-  <br><br>
+<div class="padd-box">
+  <h2 class="title-lg text-upper">contact me</h2>
 
-  <p class="contact-description">Otherwise, drop me a message!:</p>
+  <div class="padd-box-xs">
+    <header class="contact-head">
+        <h3 class="title text-upper">If you'd like to schedule a call, please use this:</h3>
+    
+    {% include calendly.html %}
+  </header>
+  </div>
 
-  <form class="form"
-    action="{% if site.contact.email %}https://formspree.io/{{site.contact.email}}{% else %}#{% endif %}" method="POST">
-    <div class="form__group">
-      <label class="form__label" for="form-name">Your Name</label>
-      <input class="form__input" id="form-name" type="text" name="name" placeholder="Name..." required>
-    </div>
-    <div class="form__group">
-      <label class="form__label" for="form-email">Your Email</label>
-      <input class="form__input" id="form-email" type="email" name="_replyto" placeholder="Email..." required>
-    </div>
-    <div class="form__group">
-      <label class="form__label" for="form-text">Your Message</label>
-      <textarea class="form__input" id="form-text" name="text" rows="10" placeholder="Message..." required></textarea>
-    </div>
-    <div class="form__group">
-      <button class="button button--primary" type="submit">Send Message</button>
-    </div>
-    <input type="hidden" name="_next" value="{{ site.baseurl }}/contact/thanks/" />
-  </form>
+  <div class="padd-box-xs">
+      <header class="contact-head">
+          <h3 class="title text-upper">Otherwise, drop me a message!</h3>
+      </header>
+  </div>
+
+  <div class="padd-box-sm">
+
+      <form action="{% if site.contact.email %}https://formspree.io/{{site.contact.email}}{% else %}#{% endif %}" method="POST" class="contact-form">
+
+          <div class="form-group">
+              <label class="form-label" for="author">Your Name</label>
+
+              <div class="form-item-wrap">
+                  <input id="author" class="form-item" name="crtName" type="text">
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="form-label" for="email">Your E-mail</label>
+
+              <div class="form-item-wrap">
+                  <input id="email" class="form-item" type="email" name="crtEmail" required="required">
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="form-label" for="url">Subject</label>
+
+              <div class="form-item-wrap">
+                  <input id="url" class="form-item" type="text" name="crtSubject">
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="form-label" for="comment">Your Comment</label>
+
+              <div class="form-item-wrap">
+                  <textarea id="comment" class="form-item" name="crtMessage"></textarea>
+              </div>
+          </div>
+
+          <div class="form-submit form-item-wrap">
+              <input class="btn btn-primary btn-lg crtFormSubmit" type="submit" value="Post Your Comment">
+          </div>
+      </form>
+  </div>
 </div>
+<!-- .padd-box -->
+

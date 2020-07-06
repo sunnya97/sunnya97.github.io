@@ -1,0 +1,372 @@
+/***
+ * 3.0 - Elements
+ */
+
+// Lines
+hr {
+  background: transparent;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  margin: $base-space 0;
+}
+
+.dotted {
+  border-style: dotted;
+}
+
+.dashed {
+  border-style: dashed;
+}
+
+// Lists
+ul, ol {
+  margin: 0 0 $base-space 0;
+  padding: 0 0 0 1.6em;
+}
+
+ol ol, ol ul, ul ol, ul ul {
+  margin-bottom: 0;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+dl {
+  font-size: 0.9em;
+  margin-top: $base-space;
+  margin-bottom: $base-space;
+}
+
+dt {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 0.01em;
+}
+
+dd {
+  margin: 0 0 0.563em 0;
+}
+
+.clear-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.styled-ul {
+  &, & ul {
+    list-style: none;
+    line-height: 1.7em;
+  }
+
+  ul {
+    padding-left: 1.1em;
+    margin: 0.7em 0 0.7em 1.2em;
+  }
+
+  li {
+    position: relative;
+
+    &:before {
+      content: '';
+      top: 0.85em;
+      left: -1.1em;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      position: absolute;
+      margin-top: -1.5px;
+    }
+  }
+
+  & > li:before {
+    width: 5px;
+    height: 5px;
+    left: -1.6em;
+    margin-top: -2.5px
+  }
+
+
+  & > li > ul {
+    font-size: 0.94em;
+
+    ul {
+      font-size: 0.9em;
+    }
+  }
+
+
+}
+
+.styled-ol {
+  line-height: 1.7em;
+  counter-reset: my-badass-counter;
+
+  &, & ol {
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+
+    &:before {
+      content: counter(my-badass-counter)".";
+      counter-increment: my-badass-counter;
+      font-weight: 700;
+      display: inline;
+      position: absolute;
+      top: 0;
+      left: -1.6em
+    }
+  }
+}
+
+.styled-list {
+  font-weight: 700;
+  line-height: 2.4em;
+
+  &, & ul, & ol {
+     list-style: none;
+   }
+
+  li {
+    position: relative;
+
+    &:before {
+      content: "\f00c";
+      font-family: icomoon;
+      color: inherit;
+      top: 0;
+      left: -1.6em;
+      position: absolute;
+    }
+  }
+}
+
+@media (min-width: $screen-sm){
+  .styled-list {
+    line-height: 1.1em;
+
+    &, & ul, & ol {
+      padding-left: 2.7em;
+    }
+
+    li {
+      margin-bottom: 1.16em;
+    }
+
+    li:before {
+      left: -2.7em;
+    }
+  }
+
+  .dl-horizontal {
+    dt {
+      float: left;
+      width: 100px;
+      overflow: hidden;
+      clear: left;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    dd {
+      margin-left: 112px;
+    }
+  }
+}
+
+.icon-list {
+  line-height: 1.1em;
+
+  &, & ul, & ol {
+    list-style: none;
+  }
+
+  padding-left: 0;
+
+  li {
+    position: relative;
+    padding: 0.35em 0 0.35em 2.5em;
+    margin-bottom: 0.9em;
+  }
+
+  .crt-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.7em;
+  }
+}
+
+.icon-list-col3:after {
+  display: block;
+  clear: both;
+}
+
+@media (min-width: $screen-xs) and (max-width: $screen-sm - 1) {
+  .icon-list-col3 {
+    li {
+      width: 50%;
+      float: left;
+
+      &:nth-child(2n+1){
+        clear: left
+      }
+    }
+  }
+}
+
+@media (min-width: $screen-sm) {
+  .icon-list-col3 {
+    li {
+      width: 33.33%;
+      float: left;
+
+      &:nth-child(3n+1){
+        clear: left
+      }
+    }
+  }
+}
+
+
+
+
+// Tables
+table {
+  width: 100%;
+  max-width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin-bottom: $base-space;
+}
+
+th, td, caption {
+  text-align: left;
+}
+
+th, td {
+  padding: 20px 8px;
+  vertical-align: top;
+  border-bottom: 1px solid transparent;
+}
+
+th {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+table>thead>tr>th {
+  font-size: 0.8em;
+  line-height: 1.1;
+  padding-top: 0;
+  padding-bottom: 8px;
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+
+@media (max-width: 767px){
+  .table-responsive {
+    &, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tbody tr {
+      margin-bottom: $base-space;
+    }
+
+    tbody th,
+    tbody td {
+      position: relative;
+      padding: 0.5em 0 0.5em 50%;
+    }
+
+    tbody th:before,
+    tbody td:before {
+      content: attr(data-title);
+      position: absolute;
+      top: 0.5em;
+      left: 0;
+      width: 45%;
+      white-space: nowrap;
+    }
+  }
+}
+
+
+/* Embedded content */
+// 1. Correct `inline-block` display not defined in IE 8/9.
+// 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; // 1
+  vertical-align: baseline; // 2
+}
+
+/*// Remove the gap between audio, canvas, iframes,
+// images, videos and the bottom of their containers
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}*/
+
+img,
+iframe,
+video,
+audio {
+  max-width: 100%;
+}
+
+// 1 Remove border when inside `a` element in IE 8/9/10.
+// 2 Remove space after inline image
+img {
+  border: 0; // 1
+  max-width: 100%;
+  height: auto;
+  display: inline-block; // 2
+  vertical-align: middle; // 2
+}
+
+// Add margin not present in IE 8/9 and Safari.
+figure {
+  // margin: 50px 0; // 1
+  margin: 0;
+}
+
+// Correct overflow not hidden in IE 9/10/11.
+svg:not(:root) {
+  overflow: hidden;
+}
+
+// Prevent modern browsers from displaying `audio` without controls.
+// Remove excess height in iOS 5 devices.
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+
+
+
+

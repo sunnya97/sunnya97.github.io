@@ -1,0 +1,65 @@
+/**
+ * Toggles
+ */
+
+// Toggle Box
+.toggle-cont {
+  display: none;
+  margin: $base-space 0;
+
+  pre {
+    margin: 0;
+  }
+}
+
+// Toggle
+.togglebox,
+.accordion {
+  list-style: none;
+  margin: $base-space 0;
+  padding: 0;
+}
+
+.togglebox > li,
+.accordion > li {
+  margin-bottom: 5px;
+}
+
+.togglebox-content,
+.accordion-content {
+  display: none;
+  padding: 15px 20px;
+}
+
+.togglebox-header,
+.accordion-header {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 0;
+  padding: 10px;
+  transition: background-color 0.15s linear 0s;
+  position: relative;
+
+  &:before {
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 4px;
+    opacity: 0.2;
+    z-index: -1;
+    transition: opacity 0.2s ease-out;
+  }
+}
+
+.togglebox-header:hover:before,
+.accordion-header:hover:before,
+.togglebox li.active .togglebox-header:before,
+.accordion li.active .accordion-header:before {
+  opacity: 1;
+}

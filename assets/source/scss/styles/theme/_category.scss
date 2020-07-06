@@ -1,0 +1,39 @@
+.page-category {
+  .post-content {
+    margin-bottom: 50px;
+  }
+
+  .post-footer {
+    border-bottom: 1px solid transparent;
+    margin-bottom: 45px;
+    padding-bottom: 40px;
+  }
+}
+
+@media(min-width: 768px) {
+  .page-category {
+    .post-footer-info {
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.post-read {
+  text-align: right;
+}
+
+@media(max-width: 767px) {
+  .page-category {
+    .post-footer {
+      .post-footer-info,
+      .post-read {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.post-video {
+  position: relative;
+}

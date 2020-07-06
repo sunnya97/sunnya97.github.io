@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+// Theme Variables & Mixins
+@import "variables";
+@import "mixins/mixins";
+
+// Global Styles
+// @import "styles/general/fonts";
+@import "styles/general/general";
+@import "styles/general/typography";
+@import "styles/general/elements";
+@import "styles/general/forms";
+@import "styles/general/grid";
+@import "styles/general/helpers";
+@import "styles/general/editor";
+
+// Components
+@import "styles/components/buttons";
+@import "styles/components/tooltips";
+@import "styles/components/dropcups";
+@import "styles/components/tabs";
+@import "styles/components/alerts";
+@import "styles/components/pagination";
+@import "styles/components/progress-bar";
+@import "styles/components/social";
+@import "styles/components/avatars";
+@import "styles/components/toggle";
+
+// WP
+@import "styles/theme/widgets";
+
+// Plugins
+@import "styles/plugins/highlight.js";
+@import "styles/plugins/mCustomScrollbar";
+@import "styles/plugins/slick";
+
+// Theme
+@import "styles/theme/share";
+@import "styles/theme/containers";
+@import "styles/theme/side-box";
+@import "styles/theme/header";
+@import "styles/theme/shapes";
+@import "styles/theme/navigations";
+@import "styles/theme/card";
+@import "styles/theme/sidebar";
+@import "styles/theme/sections";
+@import "styles/theme/blog";
+@import "styles/theme/category";
+@import "styles/theme/education";
+@import "styles/theme/testimonials";
+@import "styles/theme/portfolio";
+@import "styles/theme/contact";
+@import "styles/theme/search";
+@import "styles/theme/404";
+@import "styles/theme/footer";
+@import "styles/theme/overlay";
+
+// Theme Color & Fonts
+@import "styles/theme/theme-fonts";
+@import "styles/theme/theme-colors";

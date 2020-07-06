@@ -1,0 +1,111 @@
+@import "../variables";
+
+// ===============================================================================================
+// Mixin to prefix any property
+// @param {String} $property - Property name
+// @param {*} $value - Property value
+// @param {List} $prefixes (()) - List of prefixes to print
+//
+// Usage:  @include prefix(hyphens, none, webkit moz ms);
+// Output: -webkit-hyphens: none;
+//            -moz-hyphens: none;
+//             -ms-hyphens: none;
+//                 hyphens: none;
+
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+
+// ===============================================================================================
+// Mixin for vendor-prefixed transitions
+// @param {*} $values - Pass in any number of transitions
+//
+// Usage:   @include transition(transform 0.2s ease-in 0.2s, opacity 0.2s ease);
+// Output:  -webkit-transition: -webkit-transform 0.2s ease-in 0.2s, opacity 0.2s ease;
+//             -moz-transition: -moz-transform 0.2s ease-in 0.2s, opacity 0.2s ease;
+//               -o-transition: -o-transform 0.2s ease-in 0.2s, opacity 0.2s ease;
+//                  transition: transform 0.2s ease-in 0.2s, opacity 0.2s ease;
+//
+// Note: You can change $vendor-prefixed-properties var inside @function prefix to set
+//       the CSS properties you want to vendor-prefix.
+
+@function prefix($property, $prefixes: (webkit moz)) {
+  $vendor-prefixed-properties: transform background-clip;
+  $result: ();
+  @each $prefix in $prefixes {
+    @if index($vendor-prefixed-properties, $property) {
+      $property: -#{$prefix}-#{$property}
+    }
+    $result: append($result, $property);
+  }
+  @return $result;
+}
+
+@function trans-prefix($transition, $prefix: moz) {
+  $prefixed: ();
+  @each $trans in $transition {
+    $prop-name: nth($trans, 1);
+    $vendor-prop-name: prefix($prop-name, $prefix);
+    $prop-vals: nth($trans, 2);
+    $prefixed: append($prefixed, ($vendor-prop-name $prop-vals), comma);
+  }
+
+  @return $prefixed;
+}
+
+@mixin transition($values...) {
+  $transitions: ();
+  @each $declaration in $values {
+    $prop: nth($declaration, 1);
+    $prop-opts: ();
+    $length: length($declaration);
+    @for $i from 2 through $length {
+      $prop-opts: append($prop-opts, nth($declaration, $i));
+    }
+    $trans: ($prop, $prop-opts);
+    $transitions: append($transitions, $trans, comma);
+  }
+
+  -webkit-transition: trans-prefix($transitions, webkit);
+  -moz-transition: trans-prefix($transitions, moz);
+  transition: $values;
+}
+
+// ===============================================================================================
+// Mixin for transform
+// @param {*} $args - Pass in any number of transforms
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  transform: $args;
+}
+
+// ===============================================================================================
+// Mixin word wrapping
+
+@mixin word-wrap() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+// ===============================================================================================
+// Mixin clearing list styles
+
+@mixin clear_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+

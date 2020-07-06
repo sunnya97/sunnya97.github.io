@@ -1,0 +1,98 @@
+/**
+ * General Styles
+ */
+
+// 1 Font Smoothing for the -webkit browsers
+// 2 Prevent iOS and IE text size adjust after device orientation change, without disabling user zoom
+html {
+  -webkit-font-smoothing: antialiased; // 1
+  -webkit-text-size-adjust: 100%; // 2
+  -ms-text-size-adjust: 100%; // 2
+}
+
+// Remove default margin
+// Set site default font styles
+body {
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  letter-spacing: $base-letter-spacing;
+  padding: 0;
+  margin: 0;
+}
+
+// Correct `block` display not defined for any HTML5 element in IE 8/9.
+// Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+// Correct `block` display not defined for `main` in IE 11.
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+// Remove tap highlight on iOS
+a,
+input,
+button,
+select,
+textarea {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+// Tell the browser that all elements width and height properties (and min/max properties)
+// includes content, padding and border, but not the margin
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+// Remove Outline styles from elements
+:focus {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+// Mouse selection highlight styles
+::-moz-selection {
+  text-shadow: none;
+}
+
+::selection {
+  text-shadow: none;
+}
+
+// Address `[hidden]` styling not present in IE 8/9/10.
+// Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+[hidden],
+template {
+  display: none;
+}
+
+/* Links */
+// 1 Remove the gray background color from active links in IE 10
+// 2 Handling really long url's
+a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: transparent; // 1
+  @include word-wrap(); // 2
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

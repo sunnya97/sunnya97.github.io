@@ -1,0 +1,48 @@
+/**
+ * Alerts
+ */
+
+.alert {
+  position: relative;
+  padding: $alert-padding;
+  margin-bottom: $base-space;
+  border-radius: $alert-border-radius;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .close {
+    top: 14px;
+    right: 15px;
+    position: absolute;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+
+.alert-success {
+  color: $alert-success;
+  background-color: lighten( $alert-success, 30% );
+}
+
+.alert-info {
+  color: $alert-info;
+  background-color: lighten( $alert-info, 30% );
+}
+
+.alert-warning {
+  color: $alert-warning;
+  background-color: lighten( $alert-warning, 30% );
+}
+
+.alert-danger {
+  color: $alert-danger;
+  background-color: lighten( $alert-danger, 30% );
+}

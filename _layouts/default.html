@@ -1,24 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="crt crt-side-box-off crt-nav-on crt-nav-type1 crt-main-nav-on crt-sidebar-on crt-layers-3">
 
 {% include head.html %}
 
-<body>
+<body class="">
+  <div class="crt-wrapper">
+
   {% if site.google-analytics %}
     {% include google-analytics.html %}
   {% endif %}
 
   {% include header.html %}
 
-  <!-- begin content -->
-  <main class="content" aria-label="Content">
-    {{ content }}
-  </main> 
-  <!-- end content -->
+  <div id="crt-container" class="crt-container">
+    {% include nav-wrap.html %}
+    
+    <div class="crt-container-sm">
+    <div class="crt-paper-layers">
+    <div class="crt-paper clearfix">
+    <div class="crt-paper-cont clear-mrg">
+
+    <!-- begin content -->
+    <main class="content" aria-label="Content">
+      {{ content }}
+    </main> 
+    <!-- end content -->
+
+    
+    </div>
+    <!-- .crt-paper-cont -->
+    </div>
+    <!-- .crt-paper -->
+    </div>
+    <!-- .crt-paper-layers -->
+    </div>
+    <!-- .crt-container-sm -->
+  </div>
+  <!-- .crt-container -->
   
-  <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+
+  {% include sidebar.html %}
   {% include footer.html %}
   {% include javascripts.html %}
+
+  <svg id="crt-bg-shape-1" class="hidden-sm hidden-xs" height="519" width="758">
+    <polygon class="pol" points="0,455,693,352,173,0,92,0,0,71"/>
+  </svg>
+
+  <svg id="crt-bg-shape-2" class="hidden-sm hidden-xs" height="536" width="633">
+      <polygon points="0,0,633,0,633,536"/>
+  </svg>
+
+  </div>
+  <!-- .crt-wrapper -->
 </body>
 
 </html>

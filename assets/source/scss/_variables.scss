@@ -1,0 +1,99 @@
+
+// ColorScheme Light
+$color-primary: #c0e3e7 !default; // Colored Elements
+$color-darkest: #010101 !default; // Text Main
+$color-darker: #757575 !default; // Text Light
+$color-dark: #e1e1e1 !default; // Dark Triangle, Outer Borders, Borders, Bordered Elements
+$color-light: #f3f3f3 !default; // Body bg, Inputs bg
+$color-lighter: #fff !default; // White Elements
+
+// ColorScheme Dark
+/*$color-primary: #d14b4a !default; // Colored Elements
+$color-darkest: #ffffff !default; // Text Main
+$color-darker: #afafaf !default; // Text Light
+$color-dark: #1f1f1f !default; // Dark Triangle, Outer Borders, Borders, Bordered Elements
+$color-light: #2a2a2a !default; // Body bg, Inputs bg
+$color-lighter: #373737 !default; // White Elements*/
+
+// ColorScheme Shtorm
+/*$color-primary: #ce3915 !default; // Colored Elements
+$color-darkest: #aec2d6 !default; // Text Main
+$color-darker: #fff !default; // Text Light
+$color-dark: #041f28 !default; // Dark Triangle, Outer Borders, Borders, Bordered Elements
+$color-light: #063140 !default; // Body bg, Inputs bg
+$color-lighter: #163e4c !default; // White Elements*/
+
+// Base Params
+$base-font-size : 16px !default;
+$base-line-height : 1.4em !default;
+$base-font-family : 'Quicksand', sans-serif !default;
+$base-letter-spacing : 0.08em;
+$base-space: 22px !default; // Margin between elements
+
+// Headings
+$font-size-h1: 30px !default;
+$font-size-h2: 24px !default;
+$font-size-h3: 20px !default;
+$font-size-h4: 18px !default;
+$font-size-h5: 14px !default;
+$font-size-h6: 12px !default;
+
+$headings-font-family: 'Quicksand', sans-serif !default;
+$headings-font-weight: 700 !default;
+$headings-line-height: 1.1 !default;
+
+// Logo
+$logo-font-family: 'Pacifico', cursive !default;
+
+// Buttons
+$btn-font-size: 15px !default;
+$btn-sm-font-size: 13px !default;
+$btn-lg-font-size: 15px !default;
+$btn-icon-font-size: 32px !default;
+$btn-border-radius: 35px !default;
+
+$btn-default-bg: #000 !default;
+$btn-default-text: #fff !default;
+
+$btn-light-bg: #fff !default;
+$btn-light-text: #000 !default;
+
+// Alerts
+$alert-info: #5bc0de !default;
+$alert-danger: #d9534f !default;
+$alert-success: #5cb85c !default;
+$alert-warning: #f0ad4e !default;
+
+$alert-padding: 13px 30px 13px 15px !default;
+$alert-border-radius: 4px !default;
+
+// Tab Navigation
+$tab-nav-width: 56px !default;
+
+// Side Box
+$side-box-width: 290px !default;
+$side-box-space: 40px !default;
+
+// Containers
+$container: 810px;
+
+// Grid System
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+
+// Media queries breakpoints
+$screen-xs: 480px !default;
+$screen-xs-min: $screen-xs !default;
+$screen-phone: $screen-xs-min !default;
+$screen-sm: 768px !default;
+$screen-sm-min: $screen-sm !default;
+$screen-tablet: $screen-sm-min !default;
+$screen-md: 992px !default;
+$screen-md-min: $screen-md !default;
+$screen-desktop: $screen-md-min !default;
+$screen-lg: 1200px !default;
+$screen-lg-min: $screen-lg !default;
+$screen-lg-desktop: $screen-lg-min !default;
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;

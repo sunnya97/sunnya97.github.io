@@ -1,0 +1,159 @@
+//Mobile First
+
+.education {
+  position: relative;
+
+  &:before {
+    top: 10px;
+    left: 0;
+    bottom: 0;
+    width: 1px;
+    content: '';
+    opacity: 0.5;
+    position: absolute;
+  }
+}
+
+.education-box {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 45px;
+
+  p {
+    font-size: 0.875em;
+  }
+
+  &:before {
+    content: "";
+    top: 9px;
+    left: -1px;
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+  }
+
+  h3 {
+    letter-spacing: 0;
+    font-size: 0.938em;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  &:last-child:after {
+    top: 14px;
+    left: 0;
+    bottom: 0;
+    width: 1px;
+    content: '';
+    position: absolute;
+  }
+}
+
+.education-date {
+  left: -20px;
+  width: 117px;
+  letter-spacing: 0;
+  line-height: 1.1;
+  padding: 6px 6px;
+  margin-left: 15px;
+  font-size: 0.625em;
+  position: relative;
+  display: inline-block;
+
+  span {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    white-space: nowrap;
+  }
+
+  &:before {
+    content: "";
+    top: 0;
+    right: 100%;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-top: 11px solid transparent !important;
+    border-bottom: 11px solid transparent !important;
+    border-left: 0px solid transparent !important;
+    border-right: 7px solid transparent;
+  }
+}
+
+.education-logo {
+  margin-bottom: 5px;
+}
+
+.education-company {
+  line-height: 1.1;
+  letter-spacing: 0;
+  font-size: 0.625em;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+//Desktop
+@media(min-width: 768px) {
+  .education {
+    margin-left: 210px;
+
+    &:before {
+      top: 10px;
+    }
+  }
+
+  .education-box {
+    padding-right: 90px;
+
+    h3 {
+      font-size: $font-size-h3;
+      margin-bottom: 22px;
+      margin-top: 0;
+    }
+
+    &:before {
+      top: 10px;
+    }
+  }
+
+  .education-date {
+    margin-left: 0;
+    margin-right: 22px;
+    padding: 8px 6px;
+    font-size: 0.875em;
+    text-align: center;
+    position: absolute;
+    width: 160px;
+    right: 100%;
+    left: auto;
+    top: -4px;
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      content: "";
+      top: 0;
+      left: 100%;
+      width: 0;
+      height: 0;
+      position: absolute;
+      border-top: 16px solid transparent !important;
+      border-bottom: 16px solid transparent !important;
+      border-right: 10px solid transparent !important;
+      border-left: 10px solid transparent;
+    }
+  }
+}
+
+.education-logo {
+  margin-bottom: 10px;
+}
+
+.education-company {
+  font-size: 1em;
+  margin-bottom: 15px;
+}

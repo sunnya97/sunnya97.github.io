@@ -1,51 +1,63 @@
-<!-- begin header -->
-<header class="header">
-  <div class="container">
-    <div class="row">
-      <div class="header__inner col col-12">
-
-      <div class="logo">
-        <a class="logo__link" href="{{ site.baseurl }}/">
-        {%if site.logo %}
-          <img class="logo__image" src="{{ site.baseurl }}{{ site.logo }}" alt="{{ site.title }}">
-        {% else %}
-          {{ site.title }}
-        {% endif %}
-        </a>
-      </div>
-        
-      <div class="menu-overlay">
-        <nav class="main-nav">
-          <div class="main-nav__box">
-            <div class="nav__icon-close">
-              <i class="ion ion-md-close"></i>
-            </div>
-            <div class="nav-grid">
-              <div class="nav-grid__item">
-                <h2 class="nav-grid__title">Menu</h2>
-                <div class="mobile-nav">
-                  {%include navigation.html%}
-                </div>
+<header id="crt-header">
+  <div class="crt-head-inner crt-container">
+      <div class="crt-container-sm">
+          <div class="crt-head-row">
+              <div id="crt-head-col1" class="crt-head-col text-left">
+                  <a id="crt-logo" class="crt-logo" href="{{ site.baseurl }}/">
+                      {%if site.logo %}
+                        <img src="{{ site.baseurl }}{{ site.logo }}" alt="{{ site.title }}"><span>.{{ site.title }}</span>
+                      {% else %}
+                        {{ site.title }}
+                      {% endif %}
+                  </a>
               </div>
-            </div>
+
+              <div id="crt-head-col2" class="crt-head-col text-right">
+                  <div class="crt-nav-container crt-container hidden-sm hidden-xs">
+                      <nav id="crt-main-nav">
+
+                          {%include navigation.html%}
+                          
+                      </nav>
+                  </div>
+              </div>
+
+              <div id="crt-head-col3" class="crt-head-col text-right">
+                  <button id="crt-sidebar-btn" class="btn btn-icon btn-shade">
+                      <span class="crt-icon crt-icon-side-bar-icon"></span>
+                  </button>
+              </div>
           </div>
-        </nav>
       </div>
-
-      <div class="navigation">
-        <div class="top-nav">
-          {%include navigation.html%}
-        </div>
-        <div class="nav-buttons">
-          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
-          <i class="nav__icon nav__icon-search ion ion-md-search"></i>
-        </div>
-      </div>
-
-      </div>
-    </div>
+      <!-- .crt-head-inner -->
   </div>
-</header>
-<!-- end header -->
 
-{% include search.html %}
+  <nav id="crt-nav-sm" class="crt-nav hidden-lg hidden-md">
+      <ul class="clear-list">
+          <li>
+              <a href="index.html" data-tooltip="Home"><img class="avatar avatar-42"
+                                                              src="assets/images/uploads/avatar/avatar-42x42.png"
+                                                              srcset="assets/images/uploads/avatar/avatar-84x84-2x.png 2x"
+                                                              alt=""></a>
+          </li>
+          <li>
+              <a href="experience.html" data-tooltip="Experience"><span
+                      class="crt-icon crt-icon-experience"></span></a>
+          </li>
+          <li>
+              <a href="portfolio.html" data-tooltip="Portfolio"><span class="crt-icon crt-icon-portfolio"></span></a>
+          </li>
+          <li>
+              <a href="testimonials.html" data-tooltip="References"><span class="crt-icon crt-icon-references"></span></a>
+          </li>
+          <li>
+              <a href="/" data-tooltip="Contact"><span class="crt-icon crt-icon-contact"></span></a>
+          </li>
+          <li>
+              <a href="/" data-tooltip="Blog"><span class="crt-icon crt-icon-blog"></span></a>
+          </li>
+      </ul>
+  </nav>
+  <!-- #crt-nav-sm -->
+</header>
+<!-- #crt-header -->
