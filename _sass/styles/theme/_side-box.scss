@@ -1,0 +1,34 @@
+/**
+ * Side Box
+ */
+#crt-side-box {
+  transition: top 300ms ease-out;
+}
+
+.crt-side-box-btn {
+  padding: 20px;
+
+  .btn {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: $screen-md) {
+  #crt-side-box-wrap {
+    width: $side-box-width;
+    float: left;
+  }
+
+  .crt-side-box-item {
+    box-shadow: -4px 7px 15px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .crt-side-box-cont {
+    padding: 20px;
+  }
+
+  .crt-side-box-btn {
+    padding: 40px 35px;
+  }
+}

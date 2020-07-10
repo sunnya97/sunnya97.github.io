@@ -1,0 +1,16 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<header class="page-header padd-box">
+  <h1 class="title-lg text-upper">Blog</h1>
+</header>
+
+{% if site.posts.size > 0 %}
+  {% for post in paginator.posts %}
+    {% include article-content.html %}
+  {% endfor %}
+{% endif %}
+

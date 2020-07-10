@@ -1,0 +1,25 @@
+/**
+ * Social Icons
+ */
+
+.crt-social {
+  margin: $base-space -12px;
+
+  li {
+    margin: 5px 12px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .crt-icon {
+    font-size: 1.250em;
+  }
+}

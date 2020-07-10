@@ -1,0 +1,75 @@
+/**
+ * Section: References
+ */
+
+.ref-box {
+  position: relative;
+  padding-left: 70px;
+  padding-bottom: 1.875em;
+  margin-bottom: 2.5em;
+  min-height: 58px;
+  box-sizing: content-box;
+}
+
+.ref-avatar {
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.ref-author {
+  padding-top: 10px;
+  padding-bottom: 5px;
+
+  strong,
+  span {
+    display: block;
+    line-height: 1.1;
+    font-size: 0.875em;
+  }
+
+  strong {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+}
+
+.ref-info {
+  p {
+    font-size: 0.875em;
+    letter-spacing: 1px;
+  }
+}
+
+.ref-cont{
+  font-size: 1em;
+  line-height: 1.2em;
+  padding: 0;
+  position: relative;
+  border-width: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 25px 0 0 0;
+}
+
+/**
+ * Section: Clients
+ */
+.clients {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  text-align: justify;
+  &:after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+  }
+  li {
+    width: 33.33%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 70px;
+    padding: 0 5px;
+  }
+}

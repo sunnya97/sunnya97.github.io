@@ -1,0 +1,29 @@
+/**
+ * Pagination
+ */
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+
+  .page-numbers {
+    height: 25px;
+    line-height: 25px;
+    font-size: 0.875em;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 8px;
+  }
+}
+
+.page-numbers.next,
+.page-numbers.prev {
+  .crt-icon {
+    font-size: 0.698em;
+    line-height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

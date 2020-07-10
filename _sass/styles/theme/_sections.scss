@@ -1,0 +1,41 @@
+/**
+ * Sections
+ */
+
+// Text Box
+.text-box {
+  line-height: 1.875em;
+}
+
+// Award Box
+.award-box {
+
+}
+
+.award-img {
+  height: 95px;
+  margin-bottom: 15px;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  img {
+    max-height: 95px;
+    vertical-align: middle;
+  }
+}
+
+.award-title {
+  font-size: 1.125em;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.award-text {
+  font-size: 0.938em;
+}

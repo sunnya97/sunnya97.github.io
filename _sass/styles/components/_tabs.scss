@@ -1,0 +1,80 @@
+/**
+ * Tabs
+ */
+
+.tabs {
+  margin: $base-space 0;
+
+  .tabs-menu {
+    list-style: none;
+    margin: 0 0 30px 0;
+    padding: 0 0 9px 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+
+    li {
+      margin-bottom: 3px;
+    }
+
+    a {
+      font-size: 1em;
+      font-weight: 700;
+      line-height: 1.1;
+      text-decoration: none;
+      padding: 6px 15px;
+      display: block;
+      border-radius: 35px;
+    }
+  }
+
+  .tab-content {
+    display: none;
+  }
+}
+
+// Horizontal Tabs
+.tabs-horizontal {
+  .tabs-menu {
+    li {
+      margin-left: 3px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+// Vertical Tabs
+@media (min-width: $screen-sm) {
+  .tabs-vertical {
+    position: relative;
+
+    &:before {
+      content: '';
+      left: 170px;
+      top: 0;
+      height: 100%;
+      width: 0;
+      border-left-width: 1px;
+      border-left-style: solid;
+      position: absolute;
+    }
+    .tabs-menu {
+      width: 150px;
+      float: left;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      border: 0;
+      margin-bottom: 0;
+
+      li {
+        padding: 7px 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .tabs-content {
+      margin-left: 170px;
+      padding: 14px 0 14px 20px;
+    }
+  }
+}

@@ -5,6 +5,7 @@
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name='description' content='{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}'>
+  <meta name="monetization" content="$pay.stronghold.co/1a1a23184ae01db40e1b593231b36ffc2e7">
 
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="shortcut icon" href="favicon.ico">
@@ -49,15 +50,13 @@
     {% include collecttags.html %}
   {% endif %}
 
-  <!-- <style>
-  {% capture include_to_scssify %}
-    {% include main.scss %}
-  {% endcapture %}
-  {{ include_to_scssify | scssify }}
-  </style> -->
-
-  
   <!-- Styles -->
-    <link href="/assets/css/plugins.min.css" rel="stylesheet">
-    <link href="/assets/css/style.min.css" rel="stylesheet">
+    <!-- <link href="/assets/css/plugins.min.css" rel="stylesheet">
+    <link href="/assets/css/style.min.css" rel="stylesheet"> -->
+  <style>
+    {% capture include_to_scssify %}
+      {% include style.scss %}
+    {% endcapture %}
+    {{ include_to_scssify | scssify }}
+  </style>
 </head>

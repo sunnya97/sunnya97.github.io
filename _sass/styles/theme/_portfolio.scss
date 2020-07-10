@@ -1,0 +1,288 @@
+.pf-filter {
+  margin-bottom: 20px;
+
+  button {
+    opacity: 0.54;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    margin: 0 40px 0 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    transition: color .2s ease-out
+  }
+
+  button:hover,
+  button.active {
+    opacity: 1;
+  }
+}
+
+.pf-grid {
+  margin-left: -1px;
+  margin-right: -1px;
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+.pf-grid-item,
+.pf-grid-sizer {
+  width: 100%;
+}
+
+.pf-grid-sizer {
+  height: 0;
+  visibility: hidden;
+}
+
+.pf-grid-item {
+  float: left;
+  padding: 1px;
+}
+
+.pf-project {
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+
+  &:hover {
+    .pf-caption {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .pf-btn,
+    .pf-title {
+      transform: translateY(0);
+    }
+  }
+}
+
+.pf-figure {
+  position: relative;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
+.pf-caption {
+  top: 0;
+  left: 0;
+  color: #fff;
+  z-index: 2;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.8);
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+  .valign-cell {
+    padding: 20px;
+  }
+}
+
+.pf-title {
+  font-size: 1.318em;
+  color: inherit;
+  margin-top: 0;
+  transform: translateY(-10px);
+  transition: transform 0.4s ease-in-out;
+}
+
+.pf-text {
+  opacity: 0.7;
+  font-size: 0.938em;
+  margin-bottom: 35px;
+}
+
+.pf-btn {
+  transform: translateY(10px);
+  transition: transform 0.4s ease-in-out;
+}
+
+@media (min-width: $screen-sm) {
+  .pf-grid-item,
+  .pf-grid-sizer {
+    width: 50%;
+  }
+}
+
+// Portfolio Popup
+#pf-popup-wrap {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9999;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.7);
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+
+  &.pf-opened {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.pf-popup-inner {
+  width: 100%;
+  height: 100%;
+  display: table;
+  position: relative;
+}
+
+.pf-popup-middle {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 50px 20px;
+}
+
+.pf-popup-content {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#pf-popup-close {
+  display: none;
+}
+
+.pf-popup {
+  padding: 40px 20px;
+}
+
+.pf-grid-item .pf-popup {
+  display: none;
+}
+
+.pf-popup-media {
+  background-color: #f0f0f0;
+
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
+.pf-popup-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+// Related Projects
+.pf-popup-rel {
+  h2 {
+    font-size: 18px;
+  }
+}
+
+.pf-rel-list {
+  .slick-next {
+    width: 20px;
+  }
+
+  .slick-prev {
+    width: 23px;
+  }
+}
+
+.pf-rel-prj {
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    .pf-rel-cover {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
+.pf-rel-cover {
+  top: 0;
+  left: 8px;
+  right: 8px;
+  height: 100%;
+  position: absolute;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 350ms ease-out, visibility 350ms ease-out;
+
+  .btn {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.pf-popup-content {
+  max-width: 300px;
+}
+
+@media (min-width: $screen-xs){
+  .pf-popup-content {
+    max-width: 430px;
+  }
+}
+
+@media (min-width: $screen-sm) {
+  .pf-popup-content {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: $screen-md){
+  .pf-popup {
+    padding: 50px 30px;
+  }
+
+  .pf-popup-col1 {
+    float: left;
+    width: 57%;
+  }
+
+  .pf-popup-col2 {
+    float: left;
+    width: 43%;
+    padding-left: 4%;
+  }
+
+  .pf-popup-content {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: $screen-lg){
+  .pf-popup-content {
+    max-width: 1200px;
+  }
+}
+
