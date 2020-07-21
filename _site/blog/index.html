@@ -8,6 +8,7 @@
 
   <title>Blog</title>
   <meta name='description' content='Random musings of a slightly crazed engineer of society.'>
+  <meta name="monetization" content="$pay.stronghold.co/1a1a23184ae01db40e1b593231b36ffc2e7">
 
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="shortcut icon" href="favicon.ico">
@@ -38,9 +39,10 @@
   Blog
 
 
-{% if site.posts.size > 0 %}
-  {% for post in paginator.posts %}
-    {% ...">
+{{ paginator.total_posts }}
+
+{{ paginator.page }}
+{{ paginator.total_pag...">
     
 
     
@@ -221,53 +223,745 @@
   <h1 class="title-lg text-upper">Blog</h1>
 </header>
 
+95
+
+1
+6
+
+/blog/2
+
+
+
+18
+
+<!-- A few weeks ago, I was invited on the Citizen Cosmos podcast where I chatted with Serej (from the [Cyber project](https://cyber.page/)) and Ana (independent Cosmos-naut).  We chatted a bit about latest developments and future of Cosmos, the Sikka validator, and our governance philosophies.  It's a nice update on the latest on what I'm working on and thinking about in crypto.
+
+Take a listen!
+
+<p style="text-align:center"><iframe src="https://anchor.fm/citizencosmos/embed/episodes/Sunny-Aggarwal--Tendermint--Sikka-edpmcj/a-a24vgss" height="102px" width="400px" frameborder="0" scrolling="no"></iframe></p>
+
+---
+
+### Transcript:
+
+###### Anna 0:03
+Hey, it's Citizen Cosmos. So we are Serej and Anna and we discover Cosmos by chatting with awesome people from various teams within the Cosmos ecosystem and the community. Join us if you are curious how dreams and ambitions become code.
+
+
+###### Serej 0:20
+Hi, today we have Sunny. Sunny is a Core Developer and a Researcher at Tendermint. He runs the Sikka Validator, he's the co-founder of Blockchain at Berkeley, and a co-host at the Epicenter podcast. Am I right, Sunny? Is that everything? Did I miss something?
+ 
+###### Sunny Aggarwal 0:39
+No, that's most of the important things. 
+ 
+###### Serej 0:42
+Do you want to add anything about yourself? Say a little bit about yourself? Describe yourself in a different way, anything you like?
+
+###### Sunny Aggarwal 0:49
+Yeah, I'm just really passionate about blockchain because I was interested in combining computer science and political economy, and so I just got really interested in blockchain. I've been working on Cosmos for about – I started in summer of 2017. So it's been almost three years now. It's been a long time working on this project and I'm excited to see how it's grown and developed since then.
+
+###### Serej 1:14
+Right. First question, it says on the Tendermint website, you're a research scientist. Describe your role as you see it. What does it mean and in your own words, what is it you do?
+
+###### Sunny Aggarwal 1:25
+Yeah, it is sort of a little bit of a vague role, which in a way, I kind of like, because it allows me to have a lot of freedom to work on a bunch of different things. I would say, I describe my role in a couple of main things. One of them is I do a lot of sort of development: a lot of the Cosmos SDK development and design of the governance module and staking module and a lot of that stuff. I've done a lot of development and I help out the development team there when it makes sense. But then what I do prefer to do is, lately I've been doing less on the development side and more on the specs kind of side. And so I'll go ahead and come up with designs and ideas for new specs, things – there are some of the things I have on the plate right now or things like proportional slashing, staking derivatives. I want to get out a spec for how to do crash interchain security and stuff. So kind of just coming up with these ideas and also sort of keeping in touch with researchers from other communities. I spent a lot of time talking to a lot of Ethereum researchers. I talked to Tezos researchers a lot. So keeping up with all the other communities as well. So that way, good ideas that come in from them can get applied to us and things, ideas that we have can get applied to their stuff. So that's one of the things. The third thing that I would say I do a lot of is sort of community evangelism. I guess this kind of started from my time at Blockchain at Berkeley, where I really just like teaching. Blockchain at Berkeley started because me and two of my friends decided to teach a class at Berkeley, teaching students about blockchain and so I just really like teaching and explaining things to people. And so I kind of did a lot of that over the past couple of years. I did a lot of events and talks and conferences, and I like to go explain how Cosmos work. I really like doing that or giving analogies and metaphors to make that all work.
+
+###### Serej 3:11
+It sounds like you said communicating is your favorite part of your job? What drives you on the inside to communicate with people? I mean, is it a passion? Is it something you wanted to do from since you're a child? What is it?
+
+###### Sunny Aggarwal 3:25
+Yeah, I don't know. I really like the communicating part of it. I think what excites me the most about it is I really like to think about metaphors. When I can come up with a metaphor that helps explain things to someone, it just gets me super excited. Like the metaphor I often use for Cosmos is this sovereign nation-states and how development of blockchain is sort of similar to the development of societies of going from kingdoms to empires to nation states. I thought that's very similar to how blockchains developed as well. For me, when a metaphor just clicks in place, I just go "Wow, that was so much fun. I just want to go share this with everyone". So I think that kind of what it is and teaching people is fun. At Berkeley I, along with the blockchain class, I just really wanted to teach something. I taught the blockchain class for two semesters, and that was a very big class with hundreds of students, we had multiple teachers, and we had a very intense class. This one semester after that, I decided I wanted something much chiller, just by myself, I want to teach a small group of people. So, I just decided to teach a class in Switzerland for some reason. Yeah, I had 20 students come take the class. It was a fun class. I just really like taking something I'm passionate about and just explaining it and teaching it to people.
+
+###### Serej 4:41
+One question here, you said, you obviously teach a lot of students. Did any of your students create something that you were proud of in terms of blockchain?
+
+###### Sunny Aggarwal 4:51
+Yeah, a lot of the students from Blockchain at Berkeley have gone on and done a lot of really cool things. One I probably like to highlight a lot is – a couple of my students – Aparna, she was in the first batch of Blockchain at Berkeley students. Zubin Koticha, he was my little in Blockchain at Berkeley. So I was sort of his mentor, but he was smart enough that I didn't really mentor him. We just became really close friends instead. We actually ended up living together last year. Alexis, they actually co-founded a startup called Open. It's actually a pretty popular DeFi product on Ethereum in the past couple of months. They do sort of put options for insurance. I'd say they're probably one of the coolest, it's a cool thing that they did.
+
+###### Serej 5:35
+Are you proud of it though?
+
+###### Sunny Aggarwal 5:37
+Oh, yeah, totally. I mean, I think it's really cool, you know. I think they've definitely found a really good product market fit there.
+
+###### Anna 5:44
+So you know, a lot of people ask you how you start your blockchain journey, but I'm going to ask you another question. What could you do if you didn't start work with blockchain? So let's imagine that in some words, you're just not involved into blockchain sphere. What could you do?
+
+###### Sunny Aggarwal 6:05
+Yeah, that's a good question. I've been actually thinking about that to myself lately a little bit as well. It's like man, what if blockchain doesn't exist? What would I be doing right now? I would say, probably before I got into blockchain I was – in high school, my passion was robotics. I was just doing robotics non-stop. When I got to college, like I said, I kind of started wanting to do something more in the interaction between computer science and political economy. So freshman year, I was doing some blockchain work after I started getting involved with that. But actually, what I was kind of really focused on freshman year was data visualization. My internship in college after freshman year, it was actually at a company where I did some data visualization stuff. My belief was that when it comes to political decision making, there's a lot of data out there for people to make decisions off of, but at the end of the day, it's still humans that are making the decisions. So if humans can't comprehend the data in a way that's actually human understandable, then all that data is kind of useless. So I was really interested in data visualization as a way of "how do we explain data insights to humans so that they can make better political decisions?" That's probably what I'd be doing if blockchain wasn't around.
+
+###### Anna 7:22
+Yeah, it's cool. A lot of people in our team are really excited about robots. It's cool to let people know how it should work, that it's not something that we imagined, usually.
+
+###### Serej 7:34
+I was gonna ask you that later, but you kind of brought the question a little bit ahead, mentioning politics, governance, and so on. Obviously, somebody who follows the Cosmos ecosystem or just an average user or a very active user can see that you're quite involved in the governance process. Is that because of what you just explained, or is there something else behind it as well?
+
+###### Sunny Aggarwal 8:01
+Similar to what I explained where I just really find governance and politics very fascinating. That's kind of why I got into blockchain. I see blockchain as a way of helping solve coordination problems. So I think better on chain governance systems is the best way. You know, it is one method of solving coordination problems. And so that I like to be very actively involved in that process.
+
+###### Serej 8:30
+Would you say that the design that Tendermint has created so far succeeded in governance, or failed, or in the middle?
+
+###### Sunny Aggarwal 8:40
+It's an absolute MVP of governance, it was just “Here's some voting on chain and by tokens.” It's extremely primitive. I think there's a lot more sort of exploration that has to be done in the governance space. What we have right now is just one of the first earliest blockchains that has an on chain governance. You know, there are earlier ones as well of course, Decred and Tezos and whatnot, at least the social – the norm is in Cosmos that we do have some sort of governance system and now it's a matter of figuring out iterating on and improving it. You know, I'm really interested in exploring things like futarchy, and I'd like to see more of liquid democracy style stuff in Cosmos where you shouldn't always have to be delegating your vote to your validator. I think that's a little bit silly. Eventually you should be able to delegate to anyone on and you should be able to delegate to different people on different topics.
+
+###### Serej 9:36
+Definitely I agree with you. It was a very interesting experiment. And well, not was – is. And I'm interested to hear your thoughts about it. I wasn't gonna bring it up. But now you bring a lot of governance up anyways, long story short, I can't remember the name of the consensus what they called it, but it was definitely on the ether and what they did in order to increase the participation in governance is they introduced a second layer of token for the governance, which didn't have a lot of money, monetary value, but the idea was that you could bet on the outcome of a governance proposal and it didn't affect the governance proposal. You staked it, but you could still kind of create a second layer market on top of that. I don't know what it was called really forgotten, but what do you think about an assumption like this? Is that too silly, too speculative or interesting?
+
+###### Sunny Aggarwal 10:31
+I think that is interesting. I mean, one thing is, in a sense, it sort of turns a little bit into a bribery market. I mean, the general rule is any sort of betting market on chain is by nature usually also a bribery market. I think this is interesting where let's say things like the Fed today right, people are currently criticizing the Fed for, money printer goes BRRR. Besides that specifically, but I think something like more futarchic does make sense for influencing the Fed’s actions where I think the Fed is not going to anytime soon give up all control over, "Oh, you know, we're just gonna let this, futarchy system run everything", but it's valuable. It could be valuable as sort of an advisory system for the Fed and if they decide to go against the market, they have to have a really good justification of why they want to enact a policy that's different than what the futarchy market suggests. I think your futarchy as an advisory system does sort of make a lot of sense.
+
+###### Serej 11:37
+What do you think in terms of like, if we move from futarchy, but let's stay in the same context. But I mean, I've been following blockchain for about probably nearly 10 years now. And we've been working on different projects and so on and so forth. And one thing I have realized is that actually was completed yesterday with Anna, the more decentralized the project is, the more difficult it becomes to have what I would call good governance. You know what I mean? Like it's more difficult it becomes to govern the project because you have more opinions, you have more stakes, what are your thoughts about it?
+
+###### Anna 12:15
+Can I add that it's some costs of governance, this MOU spent a lot of time to come to some arrangement.
+
+###### Sunny Aggarwal 12:24
+Yeah, as the number of stakeholders increases and voices, you know, it definitely does become harder. I don't know. I guess one interesting thing. I never considered that until you just asked this question. But I feel governance got easier on the Cosmos hub after launch. I felt there was a lot more disputes over certain design decisions and stuff within the Tendermint team while we were launching the hub, right? In retrospect, some of the arguments were sort of so silly. I remember we've gotten into an argument about, "oh, how big should the memo field size be" and it's dumb things like that. And then I feel after launch, somehow all those arguments stopped happening. I don't know, maybe there's a rule where, as you scale up the size of the governance system, you naturally end up just sort of pruning away some of the less important stuff. And so, you kind of become aware that look, I'm not going to go make a governance proposal to go change the size of the memo field, you know. Am I really going to be the person who's gonna make all these thousands and thousands of Cosmos participants vote on this thing? Yeah. So I think what ends up happening is when you have these larger governance systems, some of these more minute details, you end up having to delegate them to more specialized sort of sub team people. How I’d like to see Cosmos Hub upgrades happen is we will for any sort of major feature change, we should have a specialized governance proposal for it. But then there's all these sort of minor changes that happen as well. I think whenever it's time to upgrade the chain before that we should make one governance proposal and, "here's a list of all the minor changes that have been made, and so, if you approve this, it doesn't make sense to sort of vote on every single small one of those." And so changing the memo field size, maybe we'll just get put into that one. If people have disputes on any sort of specific minor thing, then they could go ahead and raise it but you just have to be more selective when your governance system becomes larger.
+
+###### Serej 14:48
+I see what you mean. By the way, the consensus is just suddenly remembered. It's called holographic consensus if you're interested to check it out. But this is just something to keep in mind. Back to governance. One more question before we move ahead. The first episode we recorded was actually with Gavin from Figma Network, and it's actually been released. I think I've seen you on the governance working groups calls as well. What are your thoughts about that idea, is it gonna work? Does it need improvement?
+
+###### Sunny Aggarwal 15:18
+I think probably the most useful thing that I hope to get out of it, is the documentation that Gavin mentioned where I think just having documentation on how the governance process works, and what all the parameters do. I think that probably, one of the most valuable things I will come off of it. Then, it's good to be able to delegate how to upgrade the governance system itself to a specialized working group. I'm not quite sure if that's really what they've been doing up until now or not, but I think that was meant to come later in their road map. I think the earlier stuff was getting the documentation and stuff working. What I would like to see that working group start to do is come up with designs for how to do that liquid democracy stuff and really take ownership of improving that specific module and that part.
+
+###### Serej 16:20
+Let's talk about Sikka for a minute here. I mean, Sikka, is if not one of the most popular validators, it’s definitely one of the most powerful in terms of stake. Did you plan for it to be successful? Was it just an experiment? Tell us the story.
+
+###### Sunny Aggarwal 16:34
+Yeah, I guess it was a little bit of a surprise. I started working on Sikka because, I remember the Bitcoin scaling debates. What I saw from that was it turned into this very miners on one side versus the core developers on the other side. I started Sikka because I wanted to be able to wear both hats. I just saw that one point down the road, there might become a situation where the core developers and the validators are standoff against each other. I don't know what it will be caused by maybe proportional slashing. I wanted to be able to have the experience of being not only a core developer but also being a validator. So one, I can understand what the process of being a validator is, and so I know that these are the kind of things that validators are thinking, or what they're worried about. So that way, I have that understanding. Also, I have some more influence on that side as well. So that way, by being a validator, I can represent the validators' opinions as well and be able to influence them better than I could if I was only a core developer. That's why Sikka originally started. It was meant to just be that and then over time, I think we just kept gaining more and more delegation, partially because of our original zero fee plan. Partially because I was well known in the space and so got a lot of delegation from that. A combination of things and so it just grew bigger and bigger. Dev, he has also worked at Tendermint for a little bit. He and I were running it together. Yeah, at some point, we were just like, wow, this is bigger than either of us expected and so we're trying to figure out now what's the next steps for it and how to continue growing Sikka. It's hard to tell what's gonna happen with the validation space, especially exchanges and stuff entering. So we're still figuring out what the next steps for Sikka are.
+
+###### Serejl 16:43
+While we're on the matter of Sikka, I've seen in your project list it’s a bit unusual, usually the validators take a little bit boring, but usually most of them are. In terms of delays their projects and it's all like projects from the same space, you have two interesting things. So let's go one by one first is Grin. What do you think about nimble wimble, what's your thoughts?
+
+###### Sunny Aggarwal 19:11
+With Grin, the part that excited me was not so much actually the nimble wimble part. I think nimble wimble is a cool idea, but it's not that much. I think coda stuff and zero knowledge proofs are much more powerful. What excited me about Grin was, at least a year ago was movement behind it. I felt the story was right. It was the most Bitcoin story that had come out in the crypto space where this anonymous text file that was just dropped on the Bitcoin IRC with this idea. Then some other anonymous person came up and built up a team to develop it and a lot of the core developers at that time were still anonymous as well. They were developing it and starting from zero and everything. What I liked about it was the monetary policy. They do 60 Grin per minute till the end of time. I think that's much more reasonable than bitcoins like deflationary thing. This is still technically deflationary, but it's a sort of different type of deflationary.
+
+###### Serej 20:23
+You're stealing our questions, Sonny. Stop it.
+
+###### Serej 20:27
+You're always answering the question ahead. He knows I have a question, Oh, my God, he keeps doing this again and again.
+
+###### Anna 20:34
+Do you feel that storytelling can store behind the project is one of the most powerful parts or one of the most important parts for the project?
+
+###### Sunny Aggarwal 20:44
+Yeah, I think so. At least cryptocurrencies are sort of heavily a meme and they're a religion. I mean, all currency is a religion, right? 100%. Yeah, one of my favorite speeches from American history, it's called the Cross Gold speech. It was a speech by William Jennings Bryan in 1896 or something. He was kind of equating the sort of undying devotion to the gold standard that people had back then to Christianity. Even the belief in gold is also a religion as well, and all currencies are religion. I think the narrative is very important.
+
+###### Serej 21:28
+That's really cool that you said that because a lot of what we do has a lot to do with it. I'm not going to pull over the quilt on myself, but it's really interesting that you said that. Back to economics a little bit and back to your projects and Sikka. I've got a little bit of a strange question. The second interesting project, which doesn't fit into the box, is Straightedge and I'm sure I've heard one of the episodes of Epicenter and you criticize the distribution of Edgeware and you did rightfully sell my opinion. What do you think would be the perfect distribution process in terms of a decentralized crypto project?
+
+###### Sunny Aggarwal 22:04
+I don't know what the perfect distribution is because I give you an interesting distribution. I don't know if it's the perfect distribution, but here's an interesting one. I'm helping out with productionizing Ethermint right now, which is our EVM on the Cosmos SDK. For this chain, we want to have a distribution for it. We want to distribute it to Ethereum stakeholders in some way, right. Who are those stakeholders? Maybe holders, maybe some other people. The thing that I got into an argument with Edgeware was about the way they did some stuff in a very sneaky way. One of the things that they claimed was they want to distribute to developers. And I'm like, okay, that's interesting. How do we distribute to Ethereum developers? So what I did was, I actually wrote up a blog post on this, and it's called the Gas Drop. What you would do there, is you distribute. So the question is, we want to distribute to Ethereum smart contract developers, and we want to distribute more tokens to people whose contracts were more useful. So how do we do this? I think what we could do is, look how much gas was spent interacting with each contract. You could say that, the most useful contracts, you let the market decide what's useful, and if it's useful, people are willing to spend money on gas to interact with it. So you could say something like, uni swap it. Look how much gas was spent interacting with this contract. It means it's providing value. You can also benefit composability here as well. Let's say the gnosis multisig contract, right. Probably people don't spend a lot of gas interacting with it, because it's pretty likely you think you can just use it, and then you make a transaction doing something else. It's probably one of the most useful contracts on Ethereum. So maybe what you want to do is also take into account in a transaction, this much gas was spent the gnosis multisig was in that contract in that execution. Let's give it some value for how much other interaction Ethereum that this contract enabled. If that makes sense.
+
+###### Serej 24:26
+It does make sense. I've read your post actually and saw it was interesting. We did our drop a little bit before it and we did it to the user specter rather than to a specific target group, but it's really interesting and I would love to see somebody implement it and try it out.
+
+###### Sunny Aggarwal 24:40
+Yeah, it's definitely not a perfect distribution, but I think it's an interesting distribution.
+
+###### Serej 24:45
+Oh, definitely. Definitely. Going to be provocative here. Do you think game of stakes was successful on distribution?
+
+###### Sunny Aggarwal 24:51
+On distribution, yes. I think that game of stakes had a couple of goals, and it accomplished some of them and it did not accomplish. It failed at some of them. The Cosmos fundraiser happened all the way back in April 2017 and after that there were a lot of entities that came up and wanted to become validators but they didn't have any atoms. I think game stakes was pretty successful in distributing atoms to these want-to-be validators. I think it was successful at that. I think it was successful at helping us test our software. Like throughout the game of stakes process, we found so many bugs, and we're able to rapidly fix them and that was a good process. I think the thing that it was unsuccessful at was getting validators to improve their security because I think there were certain design choices that we made. So for example, this hyper vapid inflation of game of stakes, it was 2,000% a day or something. I don't remember what it was. It forced everyone to have a hot script that would automatically withdraw the rewards and redelegate them. But the problem is, that's not what you want to be happening. That's not helping you practice your operational security at all. I think that's one thing where game of stakes sort of fell short, in my opinion. I don't think anyone was running in their actual production environment or anything like that.
+
+###### Serej 26:21
+This is really funny, but the first question that’s one of the validators in our test nets asks us, give us a script. It was exactly that and we were like, what guys? Anyways, what do you think about multi signature validation? There are obviously two ways of doing this. Let's say there is one way of having an operator which would be multi signature and having a one single machine to do the computation. And then there is the more complicated way I would love to see like a real multi signature validator. We have three different machines going forward, and I think that would be something big level operations. In terms of security, I'm not sure about the costs, obviously, because I think the costs here would be crazy.
+
+###### Sunny Aggarwal 27:04
+So do you mean, let's say I split my validation key across multiple servers and they have some sort of consensus between them? What is your attack model here? Are you worried about Byzantine failure of one of the validator nodes or crash failure of one of the nodes?
+
+###### Serej 27:21
+Well, I think both and rarely, because obviously, in terms of Byzantine failure, a thing that might actually add to the attack, because one of the operators or two of the operators might be Byzantine. I kind of ruined the whole story. But let's imagine that they're not Byzantine. Let's just imagine for the sake of it. For the sake of theory, is it something that would be possible at all? It's good to hear feedback.
+
+###### Sunny Aggarwal 27:44
+I have a design for how to do this. I haven't implemented it yet, but I'd like to eventually. Some of the validators already do for sure. This one, I believe they actually use RAFT. They have a couple of validator nodes and they use RAFT between their nodes before they sign the validator. I think that's pretty interesting. I think I have a solution that's even simpler or better than using raft between the validators. You have this high communication overhead within your system before you can make nodes, A sign every single block. You also need to have at least three nodes in order to do raft. So here's my solution. Let's say I had two validator nodes. Let's say I had a primary and a backup, right? I want the primary to basically always be signing, and if it fails, you want the secondary, the backup to take its position. This would be simple to do if you had a perfect communication link, like a perfectly synchronous communication line between your two validators. But then the problem is we don't because what if something happened between that wire that connects you to validators. Here's the thing, we actually do have a perfectly synchronous communication link between the two nodes and it's the blockchain itself. So, what you could do is you can make a simple rule. In Tendermint and in the Cosmos SDK staking module we kind of say, you can miss hundreds of blocks without getting in trouble, right? We can just make a simple rule that says, look, the primary is signing blocks always and the secondary is watching the blockchain. If the primary, if it ever sees 10 Tendermint blocks in which our signature is not on, the primary signature is not on it. It will start signing and what the primary will say is if I ever see 10 Tendermint blocks in a row, in which my signature is not there, I will shut off and never turn on again. I will not sign after that. This guarantees that there's no situation in which there's any block in which both the primary and the secondary tried to sign it.
+
+###### Serej 30:13
+That's interesting. That's interesting. Have you seen any similar implementations to what you say?
+
+###### Sunny Aggarwal 30:18
+No, I don't think I've seen any similar implementations. I think Hyung from B Harvest might have proposed something a little bit similar. But his was a little bit more complex, as he was suggesting, actually making transactions on the chain letting that thing know. He had a similar insight of using the blockchain as a synchronous communication mechanism. But I think it was a little bit more complex than I thought it should be, because you don't actually have to make transactions on the chain. You can just look at the signatures on the Tendermint block, which is what you're supposed to be doing anyways.
+
+###### Serej 30:53
+Yeah, I will definitely ask him. I think we're recording actually a couple of days and we started interrupting good.
+
+###### Sunny Aggarwal 30:58
+Yeah, and I mean, I've worked on this protocol, improving the design with the Chorus One team. You can even design it in such a way where you have it, so when your primary falls off and started shutting off, you can actually make it so it becomes a secondary. So you can always use these two nodes sort of as this, tag team thing it.
+
+###### Serej 31:19
+Makes sense. Makes sense. Validator things are quite complicated and interesting. I think it's good to see that in the Cosmos ecosystem, a lot of users who are not validators get very curious about the work of the validators and get interested and they ask questions and I think it's really good because I've seen a lot of other systems. For example, Bitcoin. I love Bitcoin but I don't really hear Bitcoin user asking questions about what is the security of the Bitcoin nodes. I've never seen that on there. Well, sometimes you do, but I think in that system, it works better. Anyways, this is just so like thinking out loud. Going back to economics and Cosmos. Do you think that in general Cosmos has a good distribution?
+
+###### Sunny Aggarwal 32:10
+No, I think it could have been way better. I wasn't really part of the project at that time. I joined about two or three months after the fundraiser. I didn't actually participate in the fundraiser myself because I thought if someone showed it to me, and I looked at it, check out this Cosmos thing and I opened it up and I'm at that time, I was a complete Bitcoin maximalist. And so I opened it up and I looked at it, I'm like, oh, proof of steak, that thing doesn't work. And so I turned it off, and I didn't look at it. I think that the fundraiser could have been a little bit – the fact that it ran out in 17 minutes, no one really had a chance to – I think that could have been done better. That being said, it is what it is. I think the distribution has only been increasing since then, right? Once it goes on the market and a lot of the early participants, they took whatever increase in value that they could get. It's been increasing since then. And you know, anyone who wants to be part of the system, there's enough liquidity of atoms on the market that you can buy into it.
+
+###### Serej 33:25
+Do you think that the way to improve that is just going organic?
+
+###### Sunny Aggarwal 33:29
+Yeah, I think so. The other option is you could use governance to find if you want to inflate the supply and or use the community pool and distribute it. But it has to be very targeted. This is who we want to distribute it to for this reason, and I'm not sure who that would be for the Cosmos Hub. I do have a proposal for Kava. I made a proposal that they should increase the supply a little bit and distribute it to DAI holders. Because I think it's a competitor bank to maker. Going back to the whole narrative thing. I think it's an interesting narrative where you could say that, "Look, I don't want to distribute to MKR holders, I want to go to DAI holders because the DAI holders are sort of this customer of the maker bank." And so by air dropping to the DAI holders is you're kind of be, "Hey, you guys are customers of that bank, come be partial owners of this bank." I think that's an interesting narrative pitch there that you could really sell. So I think it makes sense for Kava in that case, I'm not sure who would be the target. If we're going to increase the distribution of an atom, we need to have a good articulated, this is who we're going to do it to and why.
+
+Anna 34:53
+
+Yeah, it's interesting. How do you think if we are just attract early adopters then or we have more than enough early adopters and we came to more typical users thinking about segmentation and all that kind of things?
+
+###### Sunny Aggarwal 35:08
+Right now, I feel that we've been kind of mostly focused not on increasing the distribution, but really building out IBC and stuff, and something that actually makes a distribution even useful in the first place. It seems a bit weird. Staking is not a product in itself. There's so many validator companies who are like, "oh, come stake, and look, you're gonna get this like 20% yield or whatever." It's not really. Staking itself isn't a product and currently, the Cosmos Hub doesn't have a real product yet. I think the first step before we try to tell people to buy into this thing is first, let's build a product that's actually worth having which is, will come through IBC and shared security and things like that.
+
+###### Anna 36:04
+If I understand you right, we are just at the beginning of a long, long way.
+
+###### Sunny Aggarwal 36:11
+Yeah, I think the Cosmos Hub has a lot to go. This IBC that's going to be launched very soon. It's the first step. IBC is just this bare bones communication layer. I hope we're going to start to see a lot of development that has to come on top of IBC. It's great to see that people like Agoric just had the proposal for how to improve IBC, and I think we're going to see a lot more protocols being built on top of IBC. There's a lot more to come.
+
+###### Serej 36:42
+What is the most exciting market that you can imagine with IBC usage right now? It's something crazy, not talking transfer. It's only something weird and something that excites residents, obviously we talk about IBC. We're not talking about data transfer. We're talking it's just data. So obviously chain can exchange whatever they want unless they agree on the rules. So what is something that excites you? What kind of markets?
+
+###### Sunny Aggarwal 37:09
+Okay, here's an interesting cool design I came up with which I like. So let's imagine we have shared security, obviously shared securities, probably one of the most important IBC protocols that has to be built. So allowing the validator set of one chain to also validate another chain. Any validator set changes that happened here, you need to copy that validator set there. Any Byzantine faults that happen there, you send that data over IBC to this chain, so they can be slashed. That's obviously one of the things but once you have that, let's say you have the Cosmos hub that's co-validating a bunch of these other chains. Let's say one of the chains that they have is a CryptoKitties chain. You don't want to move your monetary assets like your Bitcoin or your DAI or whatever to that chain. You want to store your money on the secure Cosmos Hub. How do you pay fees on that other chain? How do you pay fees on the CryptoKitties chain? So this is a fun idea, cool design I came up with how to pay fees for one of these chains on the Cosmos Hub. How you do it is the validator set of the Cosmos Hub, it can be represented as an account. What you can do is you can open a one way payment channel to that validator set on the Cosmos Hub. When you want to make a fee payment to make a transaction on that chain, you sign a payment channel update like increasing your payment there and you take that signed payment channel update and predict – normally in a transaction, in the fee field you just say you just put in an amount of money right and when it gets executed pulls out money from your account. But here instead, what you're going to do is you're just going to put a signed payment channel update in the transaction. The validators, when they get that transaction, they can see "Oh yup, this is a valid payment channel update to our thing over there that's added to that, let's provide that transaction." But now what's to stop them from taking that sign channel update and just executing that closing the payment channel. Why do they actually have to include the transaction? So what you can do is use IBC for this where you could say, "look, if you have the latest sign channel update, you also have to prove that the transaction that that's related to actually did make it into the other chain." I call this conditional payment channel where it's a payment channel payment that's conditional on something happening. So in this case, it's conditional on an IBC proof of a transaction actually being included.
+
+###### Serej 39:52
+That's interesting. I hear a lot of people describe it as TCP IP. To me, it resembles HTTP more because what do we use HTTP for to communicate between databases. What is IBC? The same but it's centralized in a more secure way to communicate and incentive between databases. This is a perfect example of something that would work. I can't imagine the implementation as good as you do. A question on a different note, I follow Solana a little bit as well. Solana obviously because they use GPUs like we do. Probably the only two projects in POS that use GPUs. I've heard your talk on the Solana podcast with Anatoly. What are your thoughts about validators in GPUs? Is that big no no? Is that something that can be useful of the computations?
+
+###### Sunny: 40:40
+I don't have an issue with validators and GPUs. My concern is when it comes to normal full nodes and light nodes and especially light client. If you have a system that has intense hardware requirements for running a validator or even if it's for running a full node. You want to make sure you have really good solid light clients. With Solana at least I hadn't seen any sort of light client specification on how to do that properly. It makes a lot of sense for blockchain operators to have sophisticated hardware but as long as whether it's using zero knowledge proof or if it's using some sort of just really good light client system, or something to make sure that the average user shouldn't be required to have that sort of hardware or they shouldn't be relying on trusting a full node. They should be able to verify themselves or somewhat.
+
+###### Serej: 41:37
+Yeah, definitely 100%. Before I ask another question which I did have but now you're getting another question. What do you think about something like Iota for example then where a user verifies? Not Iota as the team behind Iota and all that but as the verifying part of Iota what do you think about it then? Where each used to verify random transactions and then it goes on and goes on. 
+
+###### Sunny Aggarwal 42:01
+I think it makes sense. Iota idea was very interesting. By the way, the Iota team kind of hates me. We had a hard language early on. If you go check out Youtube I probably have the most viewed technical presentation on Iota on Youtube. It's an interesting idea but the point that I took the most offense to is their whole thing of saying "Oh it's zero fee". I show that, no, inevitably in the system there will be fees. It should have come as out of bond of payments for fees but it's gonna happen. That being said, so I think Avalanche, it's sort of Iota done right. When Gun first told me about Avalanche protocol, he described it to me and I'm “wait this sounds extremely similar to Iota” and he said, “yeah” it's probably what's most similar to. I think Iota had some interesting ideas and I think that's really cool. When it comes to Avalanche, I’m actually very excited about Avalanche for a sort of weird reason. I think I mentioned it in Solana's podcast but I think you can do web of trust as a civil resistance mechanism using Avalanche. I don't think you need proof of stake or proof of work or proof of storage or anything like that. I think you can actually do a web of trust-based consensus protocol. 
+
+
+###### Serej: 43:24
+It's really interesting. Before I heard this space in 2018 or 2017 or early 2018. It was more of a theological fantasy article. How will consensuses evolve and then suddenly, after I write this article, I just see he’s featured in Youtube and then I'm like "What? How did I get it?" I mean those exactly spot on and it's interesting that he talked about the same thing. What else afar from Avalanche surprises you right now? Nothing Cosmos related Blockchain space, no big projects. Forget about Iota, theory on bitcoin and whatever. What surprises you lately? What project or what technology?
+
+###### Sunny Aggarwal 44:06
+Good question. It's not new, but it's something I'm pretty trying to get more involved with. I really love Interledger. Interledger is such an elegant lead design protocol and I wish it had more adoption and usage. Sikka would like to get more involved with that project and I'm working on that. If people don't know what it is then definitely check it out. "Wow this is super well-designed."
+
+###### Serej: 44:41
+I've never heard about it. What did they do in two words? This is strange for me because I usually know all the projects, I'm like what the hell? I don't know this project. What is it?
+
+###### Sunny Aggarwal 44:50
+Interledger fixes all the problems with Lightning. Where Lightning uses the hash timelock contracts. Lightning has so many issues with it. The fact that you can sort of dost the network for free. I think Lightning doesn't actually work because of that reason. If I could just lock up the creditee and not pay anything for it. It breaks protocol. What Interledger does is it uses something called streaming payment. Let's say I wanted something with Anna and we're going through you. What we could do is instead of using hash timelock contracts, we can use streaming payments. Which means I'll send you 5 cents, and then you send Anna 5 cents. I'll send you 5 cents, you send Anna 5 cents. I'll send you 5 cents, you send Anna 5 cents. And so if at any point, you go malicious and disappear, “Oh no! You got away with 5 cents.” No one's gonna pair with you anymore after this. It's like using a little bit of trust in the system. You can actually make it a much more well-designed protocol. The reason it’s called Interledger, is because you can imagine this being used for one payment, like a secondary network on top of one currency, but you can also actually use this for streaming between currency. Let's say I wanted to send BTC and you wanted to receive ETH. You could use that same streaming payment because I could be one of nodes in the middle. Send me a couple cents of BTC, I'll send a couple cents worth of ETH, you send me a couple cents of BTC. Interledger is designed is it’s sort of clearing network layer for payments and then you can settle to any sort of settlement system you want. Rather, you could settle to a layer 1 blockchain, you could settle to a payment channel or you could settle to Venmo if you wanted to. You could settle to all of these different things. I think it's sort of the best designed payments networks possible. 
+
+###### Serej: 46:58
+That's interesting. I'm gonna check it out definitely. 
+
+###### Anna: 47:00
+Yeah, I have one more question. Who do you tell us about Sunny AI Twitter?
+
+###### Sunny Aggarwal 47:08
+Yeah, sure. I was reading a blog post called Money Stuff. He's making fun of VC Twitter and all this thought leadership and stuff that they do. He was saying, "Well you know, if the goal of VC is just to get maximum deal flow and Twitter helps him get that, he just probably just invests in making an AI that tweets out thought leadership for them." I thought that was funny and so I started looking into it. I found about GPT 2 which people actually have written bots. There's this guy, his name is Max. He works at Buzz. He's a data scientist at Buzz Bee. And so puts together this blog post. It's super simple to run and use and how to generate Tweets and train them on your own Twitter history. I just did that and started generating Tweets and I set up a bot that would automatically Tweets every couple hours. It will just Tweet out or generate Tweets, trained up on my own history. It's really fun. My Twitter history is mostly crypto stuff and geography fun facts. It's just generating and especially when it starts combining these things, it just gets really funny. 
+
+###### Anna: 48:30
+Yeah, it's really a lot of fun. 
+
+###### Serej: 48:33
+I think I've seen books on Amazon that are called written with GPT 2. I think.
+
+###### Sunny Aggarwal 48:40
+Yeah, GPT 2. What's cool about GPT 2 is all it's doing, it's just a patterned recondition. It's saying, here's a bunch of words that I've learned. The model that we’re using, they scanned it on all of Wikipedia and so many books. Like all the books that they can find and so they created this model. And then it's just saying given these series of passwords, what's likely to come next? But what's cool is, this is a great blog called "Slate Star Codex", it's like a rationalist blog, it's really great. One of the things he wrote about was what he gave us he trained GPT 2 on all past professional chess schemes. So all chess schemes are written in standard chess notation. In a way, you can consider that sort of a language. He trained it on every single past professional chess scheme he could find. He made up to play chess against himself. It's just like guessing what moves do based off of patterned recondition of chess language. It wasn't that good. He beat it but it made some good moves. I remember one he's like "Oh it took my work and I wasn't expecting it," it made some good moves. What's cool about this is, this AI has no concept of what chess is. Chess was possibly around in 1997 when they beat the human, right? This bot has no concept of the game of chess. It doesn't understand the 2D board. It doesn't understand anything. All it understands is chess notation language. In a weird way it's sort of a general AI. I wonder if you can describe anything as a language, you can train this bot to understand it. 
+
+
+###### Serej: 50:24
+Yeah, it's really interesting because I think quickly you could probably describe it's a language right, whether there is emotion or algorithm, and at the end of the day, it's an algorithm whatever it is. One last question I have for you. Coming back to Cosmos, what is the thing that you'd like to see in a year's time in Cosmos that's going to affect everyone that's using Cosmos best. Positive note, I don't know anything. What's something exciting that you're expecting to happen in Cosmos within a year?
+
+
+###### Sunny Aggarwal 50:59
+I think the most important for the Cosmos Hub is to get shared security. There are some applications that I want to build the Cosmos chain for and I wanted that Cosmos is SDK based. But I don't want to do a proof of stake token because the idea I'm gonna have is very simple utility change almost. I don't want to launch a token for that. The beautiful thing about Ethereum is I have a contract I want to write, I just deploy it. I think we need to get to that point with the Cosmos Hub as well. I think there's a relatively very high barrier to entry for launching a Cosmos chain not because of the software development vary. It is a little bit harder than writing a smart contract, but for building something production ready probably should be writing on the Cosmos SDK. I think the main hurdle is doing that sort of distribution and stuff at getting a validator set community and all that. I think if you abstract a lot along the way, then you’re going to see a lot more change starting to build. 
+
+
+###### Serej: 52:12
+I would love to see more and more and more and more and more change. I think I'd love to see Aragon finally. I like Aragon. It's been really cool chatting to you, Sunny and it's really exciting to see that people who are involved regardless of whether they're developers of Tendermint or not,  think about the broader aspect of things rather than just concentrating of their own work and I'm really happy as a user, at least right, and not just somebody who's making a project on Cosmos that's another story, but the user I think is definitely kind of makes me happy. 
+
+###### Sunny Aggarwal 52:44
+Awesome, thanks for having me on!
+
+
+###### Serej: 52:46
+Thanks for your time!
+
+###### Anna: 52:48
+Thank you!
+
+A few weeks ago, my roommate and I were having a discussing the hit musical Hamilton (which as [I've mentioned before on this blog](2017-02-27-creating-financial-systems.markdown), has been massively impactful for me personally). Now obviously, the musical was amazing because lyrics were fire and the story was interesting. But there are tons of historical figures with interesting stories, and if Lin Manuel Miranda sat down to write lyrics about their lives, they'd probably been just as straight fire.
+
+But then why Hamilton? What made Alexander Hamilton such an...intriguing choice?  We eventually decided it had to do with his positioning in the larger historical narrative and how underrated a historical figure he was.
+
+While his musical *is* about him, it’s actually about the historical period.  Really, Hamilton is used as a window into the story of the American Revolution and the building of a new country.  But everyone already knows that story!  Which is why choosing Hamilton as the central character was so important.  Some of the side characters are way better known than Hamilton.  George Washington, Thomas Jefferson, etc.  But by choosing a slightly lesser known figure, provides a fresh new lens.
+
+And the thing is, he *should be* as well known as those others!   He’s *extremely* important in American history, but most people probably don’t know what he did (most people probably just remember that he was killed in a duel).  But the thing is, they probably do at least vaguely recognize his name.  After all, he’s on the $10 bill!  Which is why its so satisfying when it clicks.  You finally understand why his name is familiar and he’s on the bill.  Because you finally learn about the important role he had in this larger story.
+
+---
+
+*(Although, I’ll admit, being an amateur history geek, it’s a bit hard for me to judge name recognizability to the general public).*
+
+---
+
+So what was the purpose of this whole exercise?  Here’s the fun part!  Given all this context now:  Which *other* historical figure would fit this bill?  If you could sit down with Lin Manuel Miranda and pitch him another historical figure to make a musical on with similar virality characteristics, who would it be?
+
+After spending some time thinking about it, here’s what I came up with:
+
+
+{: reversed="reversed"}
+
+5. **Joan of Arc**
+   
+   I think Joan of Arc meets a lot of the criteria above.  She’s a “household name” but most probably don’t know much about her.  I’ll admit, even I didn’t know much of the details until I watched this pretty good [Youtube mini-series about her](https://www.youtube.com/watch?v=4XFVzpJxgUk&t=6s).  My only concern is while she’s decently important and would make for a good story, I’m not sure how well modern audiences will resonate with the time period.  Not sure many people have much emotional stake in the 100 Year’s War.
+
+4. **Mark Antony**
+
+    I thought this could be really interesting.  Backdrop:  Fall of the Roman Republic.  Mark Antony is one of the main characters, who people may have heard his name.  But they’ve definitely heard of the other characters.  Caesar.  Augustus.  Cleopatra.  Brutus.  I was first told this story in middle school Latin class, and I think more people need to hear it!  Now there is one qualm. Shakespeare beat me to the punch over 400 years ago in his plays Julius *Caesar* and *Antony and Cleopatra*.  But [it’s not like there was never a play about the American Revolution](https://en.wikipedia.org/wiki/1776_(musical)) before Hamilton.  I think this story is due for a modern remake! 
+
+3. **Theodore Roosevelt**
+   
+    If Hamilton the Musical was the answer to “why is this dude on the $10 bill”, then Roosevelt the Musical will be the answer to “why is this dude on Mt. Rushmore”. Basically everyone has heard of Theodore Roosevelt (thanks Teddy bears!). To be quite honest, I was very much hesitant about this choice.  Choosing a US President felt kind of iffy to me.  It felt too mainstream. 
+
+    But, I think very few people actually know much about what T.R. actually did and how important he was.  And it would make for an entertaining story for sure.  He’s definitely the president whose life would make the best movie (he was a cowboy, led the [Rough riders](https://en.wikipedia.org/wiki/Rough_Riders) in the Spanish-American war, and [got shot during a speech…and kept going to finish the speech](https://www.history.com/news/shot-in-the-chest-100-years-ago-teddy-roosevelt-kept-on-talking).).  And that’s all outside the period of his actual presidency!
+
+    His story takes place at a very pivotal point in American history.  This story is best told by the amazing Dan Carlin in [his episode on the Spanish-American war](https://www.dancarlin.com/product/hardcore-history-49-the-american-peril/).  But to summarize:  from its very beginnings, America’s foundations in self-governance and liberty were at odds with its european-inherited imperialistic desires.  For its first 100 years, this imperialist desire was directed to expand westward across the “empty” continent.  But by T.R.’s generation, manifest destiny was over.  The entire continental US. was already settled.  To expand further, the US needed to create colonies and become world power, but this meant having to confront the dissonance with America’s founding myth.  I recommend listening to the podcast for more on this, but I think this is a fascinating, often under-explored, theme in American history.
+
+    Another interesting topic would be his famous “trust-busting” of monopolies, a theme I think would also [resonate well with modern audiences](https://www.theverge.com/2018/9/5/17805162/monopoly-antitrust-regulation-google-amazon-uber-facebook).
+
+2. **Henry Clay**
+    
+    I just recently finished reading the book [Heirs of the Founders](https://www.amazon.com/Heirs-Founders-Rivalry-Generation-American/dp/0385542534).  It’s about the second generation of American statesmen, those that inherited the country from the Founding Fathers, and had to tackle the problem left for them, especially that of slavery.  A perfect sequel to Hamilton, a view into the next part of the American story.  The book focuses on three men: Henry Clay, John Calhoun, and Daniel Webster, but personally, I would say Henry Clay is clearly the central character, as his story intertwines through the rest (and tbh, he’s the one whose name I clearly remember from high school history class).  Clay’s role model growing up was Thomas Jefferson, but the story of his life is about the clash of idealism and pragmatism.  A great way to show the lasting impact of Hamilton’s legacy in action.  And viewing the Jacksonian era from Clay’s point of view would be great.  And the best part of all, as I learned from the book, Henry Clay’s entrance into public sphere was in being Aaron Burr’s defence attorney after [his conspiracy plot](https://en.wikipedia.org/wiki/Burr_conspiracy) (a whole other story).  What a great tie-in to the ending of Hamilton!
+
+1. **Marquis de Lafayette**
+   
+    If we’re going for a sequel, I think there’s no better choice than the Hero of Two Worlds.  *Hamilton* has made Lafayette into a household name.  So let’s give him his own spinoff and and follow him across the ocean back to France.  Given audiences’ familiarity with the character, will make him a perfect vessel to explore the turbulent French Revolution, and explore why it had such vastly different outcomes from the American.  Just like he was a massively underrated character in the American revolution, I think he's just as underrated in the French (at least to American audiences).  And now we can learn more deeply about his motivations beyond just the simplistic “Freedom for America, Freedom for France!” presented in *Hamilton*.  And Lafayette, unlike many of his peers, actually kept his head all the way through the French Revolution, and even the Napeolinic era, and so can give us the complete story.  Someone please make this.
+
+---
+
+P.S. The musical [Six](https://en.wikipedia.org/wiki/Six_(musical)) came out last year, and its about the wives of King Henry VIII.  While I haven’t actually listened to the entire thing, its has pretty rave reviews.  And the few songs I did listen to are pretty good.  I think historical musicals are gonna be here to stay!
+While ruminating on my [Gasdrop idea]({% post_url 2019-11-19-gasdrop %}) from a few months ago, I thought of a pretty funny and somewhat devious method for Ethereum smart contract developers to monetize their smart contracts.
+
+1. In your contract execution, make the caller create a bunch of GasTokens (if you don’t know what GasToken is, [read their website first](https://gastoken.io/)) in the contract’s name.
+2. Allow yourself to sell those GasTokens for a profit! ([There’s a market on Uniswap!](https://uniswap.info/token/0x0000000000b3f879cb30fe243b4dfee438691c04))
+Yep, it’s that simple!
+
+Now, of course, GasToken isn’t perfect; you end up losing some value to the miners. It would be better to just require users to pay a fee in order to execute your contract. And this probably works well for contracts where people are already sending money to the contract and you can scrape some off the top (like Uniswap’s 0.3% fee).
+
+But for many contracts where people aren’t sending money to it, requiring them to attach value to their contract call would likely add a lot of friction and would make users somewhat uneasy. However, by using the GasToken model, this cost gets hidden away is the increased gas usage of the contract call! And let’s be real, people don’t really have an intuitive sense of how much gas a contract *should* be using, so artificially increasing it a bit would probably be close to zero added friction!
+
+Should people use this? I don’t know. But it’s a fun concept, and it would be kind of interesting if someone does!
+
+![]({{page.image}}){: .center-image .hero }
+Addendum to my previous post: [War on Different Scales]({% post_url 2020-04-03-war-on-different-scales %})
+
+---
+
+A few months ago, at the Ethereum Classic Summit, I [gave a talk on a potential roadmap towards Proof of Stake](https://youtu.be/BwnQIlehGyw?t=408). To be quite honest, I wasn’t really expecting the Ethereum Classic community to buy into the proposal. Rather just wanted to:
+1. Get the gears in their heads spinning a bit on the idea
+2. Use it as practice for a [similar talk I gave a week later at Ethereum DevCon](https://www.youtube.com/watch?v=pSCeTOgkzE0).
+
+So the majority of the content between the two talks was the same, but there was one particular section that was unique specifically to the ETC version. In a previous post, I delved into this interesting quote I found:
+
+> A war on the scale of 2 years is a war of economics.
+> 
+> A war on the scale of 20 years is a war of technology.
+> 
+> A war on the scale of 200 years is a war of ideology.
+
+Check out that post for some more explanation and thoughts on this.
+
+Turns out, the first time I ruminated on the quote, was for this ETC Summit talk. These time scales maybe make sense for the physical world, but when it comes the digital memetic wars between internet communities, maybe we have to compress these time scales:
+
+> A digital war on the scale of 2 months is war of economics.
+> 
+> A digital war on the scale of 2 years is a war of technology.
+> 
+> A digital war on the scale of 2 decades is a war of ideology.
+
+After all, there’s a common joke in the crypto space that 1 blockchain year is like 10 normal years. 😁
+
+So what does this have to do with Ethereum Classic? Well, we can see the “war” between Ethereum and Ethereum Classic as an ideological dispute. Without casting any personal judgement on the matter here, but if the Ethereum Classic folks believe their chain is the morally superior one, they cannot depend on that alone to grant them victory in the chain war.
+
+ETC is clearly currently losing the war. And its because the short-game was won through economics. The Ethereum Foundation chose to back the DAOfork chain and had the funding and resources (and trademarks) to promote it and win that battle.
+
+Now we’re well into Stage 2; this digital war has been going on for nearly 4 years now. The Ethereum Classic community should be focused all its energy on the technology. And Ethereum is currently kicking ETC’s butt on this front. The tooling is far superior, the protocol upgrades are more regular, and the roadmap is more clearly defined. Recently, the Ethereum Classic community has been getting better — caught up on opcodes with the Atlantis hardfork, better Metamask integration, etc. But most of this has just been playing catchup to Ethereum.
+
+If the Ethereum Classic community wants to try to make a comeback in the mid-game, they need to actually innovate. Ethereum is charging ahead with Proof of Stake and sharding and [so much more](https://twitter.com/VitalikButerin/status/1240365047421054976). In the talk I provide a potential proposal, for what in my opinion is a much more sane and reasonable approach to achieve PoS/sharding than Ethereum is taking. But ETC doesn’t have to have the same goals at Ethereum, but they need to have some technological goals!
+
+*Disclaimer: I’m not an Ethereum Classic insider by any means. I even forewarned as much in the title of the talk — A Peripheral Observer and Fan’s View of Ethereum Classic. Yet for some reason, I often find myself known as the “Ethereum Classic guy” in the Ethereum circles. Idk, I like to wear an Ethereum Classic shirt occasionally.*
+
+![](/images/medium/0*o4i_ZXiTtzzWTMlj){: .center-image .hero }So I don’t remember where I originally saw this, and can’t for the life of me refind it (if anyone knows the source, please let me know!), but a few months ago I saw the following set of statements:
+
+> A war on the scale of 2 years is a war of economics.  
+> A war on the scale of 20 years is a war of technology.  
+> A war on the scale of 200 years is a war of ideology.
+
+Essentially it is claiming that most wars on the timescale of a few years, usually come down to economics — who has the most resources, who can most effectively mobilize their society to utilize those resources, who can win in a war of attrition. When wars last on the timescale of decades, they’re decided by technology. I’ve written in the past about [why technological advancement flourishes during wartime]({% post_url 2017-05-06-innovation-through-economic-states-of-exception %}). A war lasting decades allows both sides time to pursue rapid technological development, thus triggering both a metaphorical and literal arms race to innovate superior technology, which will allow them to win the war. Only when wars reach the scale of centuries (or rather, at least a reasonably long enough time horizon), does superiority of ideology impact the outcomes.
+
+Now, I don’t know if these exact time scales are historically accurate, and I think every war involves all of the factors, but perhaps different importance weights for each.
+
+![](/images/medium/0*eOGZCBNvdUNEFN6C)
+
+For example, in my opinion, the Cold War, despite being less than a century, did largely come down to a failure of the ideology. But the failure of the Communist agenda drove the economy into the ground. Which made it fall behind in technological progress. And when they tried to punch above their weight on that, it drove the economy further into the ground.
+
+
+Aside: It’s also worth noting, we’ve completely abstracted away the many other factors like luck and of course, strategy. But it seems historically, these are only the major factors on the shortest-term skirmishes. By the time conflicts escalate to large-scale wars, usually the above three factors dominate.But the real insight from all of this is that most wars, especially short-term wars, don’t validate the victor’s ideology from a [cultural evolutionary](https://slatestarcodex.com/2015/07/07/the-argument-from-cultural-evolution/) standpoint; they don’t say anything about the superiority of either side’s ideology. Slavery didn’t end in the United States because we had a well-reasoned debate about its morality. It ended because the Union won the Civil War. And it won it because of its economic superiority. It had more industrial capabilities and resources.
+
+Similarly, Fascism didn’t end in 1945 because it lost an ideological war. Germany lost because it was unable to best the combined economic might of the Allies, especially the industrial and agricultural output the United States could muster and the human resources the Soviet Union was willing to “expend” (technological innovation through atomic energy did also play a role in speeding the end of the war in the Pacific). And this should be a bit unnerving. Because it means, unlike Soviet-style communism, Nazi-style fascism was never defeated; only Nazi Germany was.
+
+Maybe this is a controversial statement, but I believe that the current Chinese government is an authoritarian semi-fascist regime. Fascism was originally presented as a third option, a middle ground between capitalism and communism, quite similar to the CCP’s current ideology, having [shed its communist namesake](https://www.worldpoliticsreview.com/insights/21000/china-s-complicated-relationship-with-workers-rights) a long time ago in favor of a heavily state-controlled corporatist economy. A one-party state with high levels of surveillance and [suppression of opposition](https://www.washingtonpost.com/news/morning-mix/wp/2014/03/11/china-scored-99-9-percent-conviction-rate-last-year/?utm_term=.03322143a710). [Strong nationalist tendencies](https://foreignpolicy.com/2019/10/01/chinas-angry-young-nationalists/) with [subjugation against minorities](https://en.wikipedia.org/wiki/Sinicization_of_Tibet) including even [concentration camps](https://en.wikipedia.org/wiki/Xinjiang_re-education_camps).
+
+The US and China are already in a collision course in a clash of civilizations, what remains to be seen is if they will fall into [the Thucydides Trap](https://www.theatlantic.com/international/archive/2015/09/united-states-china-war-thucydides-trap/406756/) (direct war) or if will remain a frigid second Cold War. But one thing is clear, the People’s Republic of China is not the same entity as the** **German Third Reich. It is more evenly matched to the US in economic terms [than Germany ever was](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.590.924&rep=rep1&type=pdf). Its technological capabilities are growing rapidly, both commercially and [militarily](https://nationalinterest.org/blog/buzz/how-chinas-submarines-became-major-threat-us-aircraft-carriers-111431). And its ideology… well we don’t know. As mentioned, the one experiment pitting liberalism vs fascism in the past, ended with… well, inconclusive results. Only time will tell. Question is which time scale we want to compete on.
+
+![](/images/medium/1*Awaq-1X_xhJkzWPVWfP3nw.png)
+*[Source](https://www.theatlantic.com/international/archive/2015/09/united-states-china-war-thucydides-trap/406756/)*While surfing YouTube a few days ago, I somehow found myself watching deleted scenes from the Tarantino movie Pulp Fiction. I came across this one, where I noticed something that perked my ears.
+
+At about time 2:36, Winston “The Wolf” Wolf’s girlfriend calls him “Señor Lobo”.
+
+<iframe src="https://www.youtube.com/embed/B9k-CS4tb3g?start=156" frameborder="0" allowfullscreen></iframe>
+
+---
+
+This caught my attention, because just a few minutes earlier, I had rewatched the scene from earlier in the movie with Butch’s taxi ride and his conversation with the driver … Esmeralda Villa ***Lobos***.
+
+
+
+<iframe src="https://www.youtube.com/embed/WO2q1iQX2UA?start=117" frameborder="0" allowfullscreen></iframe>
+
+(Start at 1:57)
+
+---
+
+The scene focuses on her name as part of their conversation. And in fact, a few seconds later, Esmeralda asks Butch what his name means, drawing particular attention to the meaning of names. And would you have it, turns out the name *Lobos* does in fact mean “Wolf” in Spanish.
+
+Now this might just be a completely random coincidence that two characters have last names that mean the same thing. But then again, this is Pulp Fiction we’re talking about, a movie famously notorious for its many hidden easter eggs!
+
+I do find it odd that I couldn’t find any single mention on the internet about this, given the insane number of videos and articles covering the most random easter eggs in Tarantino’s movies!**THIS IS A THOUGHT EXPERIMENT ABOUT A NOVEL BLOCKCHAIN MECHANISM DESIGN. I DO NOT CONDONE USING THIS IN PRACTICE.**
+
+Most Proof of Stake protocols have some notion of slashing, a method of punishing the perpetrators of byzantine behavior as a disincentive for acting maliciously. However, in most protocols, slashing events have the same general effect — usually a combination of
+
+1. A partial burning of the stakers locked funds
+2. A temporary or permanent removal from the validator set
+This has proven to work relatively well thus far. But… what if we wanted to take this a step further?
+
+So this is going to sound dark…but hear me out. A couple months ago in Berlin, it was pretty late at night and we had had a bit to drink (maybe a bit more than a bit). We started discussing a COMPLETELY HYPOTHETICAL scenario. What if “slashing” meant *actual slashing*? If we want to make the most secure Proof of Stake blockchain in the world, we need to make the disincentive for Byzantine behaviors the ultimate punishment — **death**.
+
+But how would we do this? We began discussing light client enabled death laser satellites or head chopping necklaces that all validators must wear (did I mention how drunk we were)? However, all the solutions we were able to come up with required some sort of trusted hardware. How to do this in a trustless decentralized way? We were beat, and not in the right state of mind to figure it out.
+
+Until it came up again a few weeks ago. I suddenly remembered that weird discussion from months prior. And it hit me. There is in fact a way you can do this in a decentralized way! Using that pesky little thing, that so many blockchain conversations eventually find their way to: assassination markets. If a validator gets slashed, instead of burning their staked deposits, we can seize their deposit and use it to open an assassination market against them!
+
+---
+
+  *Note: Instead of a traditional prediction market, you can use [**this modified design**](https://github.com/BerkeleyBlockchain/BlockChange) I built a few years ago that removes some of the perverse incentives around bribery markets. It was originally meant for use in creating decentralized social impact bonds…oops.*
+
+---
+
+Now, before we all freak out, it’s important to note, that assassination markets are simply the farthest extreme use of **generalized slashing**, and one we certainly would never want to even suggest using. But its interesting to note that this mechanism can in theory be used to incentivize any sort of social behavior as a slashing mechanism, like shunning them from society or even a “less violent” form of violence.
+
+For example, if we wanted validators who double signed to have eggs thrown at them, we can simply make open a prediction (bribery) market saying that they will have at least *n* eggs thrown at them (captured on video) in the next 3 months, and use their slashed stake as a bet that that won’t happen. Thus, people are incentivized to buy the other side, and start throwing eggs at them!
+
+![](/images/medium/1*u8s6B2IDf1OtDF8gFRVkWQ.jpeg)
+*Original left image from [btcmanager.com](https://btcmanager.com/inside-augurs-assassination-prediction-market/?q=/inside-augurs-assassination-prediction-market/&)*{: .center .center-image }Well, not really. The expansion of Federal power at the expense of State’s rights, is a story that dates back nearly as far as the Constitution itself. However, my hypothesis is that the 17th Amendment was a sort of first nail in the coffin, a point of no return for the federal power increase (and do note, this is just a political hypothesis).
+
+To jog your memory from high school history class, the 17th Amendment was the one which called for direct election of Senators. Prior to this amendment, Senators were chosen by the State legislatures, while House Representatives were elected directly by the people. This makes a lot of sense when considering the design of the bicameral Congress. The House of Representatives was supposed to represent *the People*. Meanwhile, the Senate was supposed to represent *the States*.
+
+This goes beyond just the idea that every state gets equal votes in the Senate. The Senators were directly selected by the State legislatures, and thus were accountable to them. In the past, Senators would likely block bills encroaching on State government’s powers, because they depended on the State legislatures for re-election.
+
+#### But enter the 17th Amendment.
+
+By switching to direct election of Senators, the entirety of Congress now is a conduit directly for the people. State governments don’t have any representation in the Federal government anymore, and thus no one to fight for preserving their constitutional powers. No federal politicians have their job hanging on the line for not pissing off the State governments.
+
+I feel many people think of the 17th Amendment as one of the “well, duh, that’s obviously good” amendments, because it “increases democracy”. But it’s important to think through the *mechanism design* that the framers put into the Constitution.
+
+#### Sometimes increasing democracy can decrease decentralization.Over the past two years, Uniswap has become one of the most popular decentralized exchanges on Ethereum. You can learn more about it [here](https://docs.uniswap.io/) or by watching the [Epicenter episode](https://www.youtube.com/watch?v=xHK0QxQ5jxg) I did with Hayden.
+
+However, the current Uniswap design was selected for simplicity rather than optimality. Now that the simple instantiation has proven itself in the market, works such as [Balancer](https://balancer.finance/) and [Curve Finance](https://www.curve.fi/) signal a desire to iterate on this design in order to suit more specialized use cases.
+
+In this post, I will propose two main changes to allow for the higher level of customizability that will enable Uniswap to adapt and become a more versatile tool in the DeFi ecosystem:
+
+1. Add more customizability to Uniswap curves by turning liquidity pools into DAOs who can use governance to improve the parameterization of the curve and fee models.
+2. Introduce the ability for multiple Uniswap DAOs for the same trading pair to compete to provide the best value to users.
+
+### Part 1: “Uniswap DAOs”
+
+I propose that Uniswap liquidity pools ought to act more like DAOs, in which the liquidity share token holders are the DAO members. These liquidity share token holders can then use governance to parameterize and customize their “Uniswap instance” to best provide a service to users.
+
+Now, what is the scope of governance that can be voted upon? I suggest there are two primary things that would benefit from customizability in Uniswap: The Automated Market Making Curve Function and the Fee Model.
+
+#### **AMM Curve**
+
+Uniswap currently uses a standard x*y=k curve for all pairs. However, there is a body of research being done these days that suggests that this may not be the ideal curve, especially for more specialized pairs like stablecoin to stablecoin, which projects like [Curve Finance’s Stableswap](https://www.dropbox.com/s/riew71qjmwyo8e4/stableswap-paper.pdf?dl=0) and [Maker’s Stablematic](https://forum.makerdao.com/t/introducing-the-stablematic-on-chain-market-maker/373) are optimizing for. Meanwhile other projects like [FutureSwap](https://futureswap.exchange/) are working on modifying the curve to enable more leverage-like trading experiences. There’s a lot of design space to explored in the construction of different curve algorithms, and what sorts of AMM curves best fit different specialized pairs/use cases, but that is out of scope for this article.
+
+#### **Fee Models**
+
+I will explain this one a bit more in depth, because it was this problem that originally got me interested in the direction after my Epicenter episode.
+
+It is [mathematically provable](https://arxiv.org/pdf/1911.03380.pdf) that without fees, it is always less profitable for someone to hold the liquidity pool shares than to just hold the underlying assets. The effect is magnified the more volatile the underlying assets are. Check out [this article](https://medium.com/@pintail/understanding-uniswap-returns-cc593f3499ef) for a written explanation.
+
+In Uniswap, this loss is offset by the fees, which are currently set to a fixed 0.3% * the trade size. However, this is likely too rigid for all cases, and may not sufficiently compensate liquidity providers, especially when dealing with highly volatile assets, if there is not already sufficient trading volume on the pair.
+
+Allowing the multiplier to be a governance controlled variable rather than a fixed constant (0.3%) might be a good start. However, it might be even better to take into account more variables when calculating fee amounts, including the volatility itself!
+
+As a market maker, there are three major things that you need to take into account: volume, spread (slippage), and volatility. The current fees method only takes into account one of them — volume, by making fees be a constant times the trade size (I believe Balancer does this). However, we could also take into account these other two variables as well.
+
+The “spread” is pretty easy to get, it’s proportional to the slippage, and this is trivial to calculate for any given trade size, using the curve equation.
+
+The “volatility”, however, is a bit more complex. It will involve taking into account the execution price of trades over a longer period of time, and thus storing and calculating the magnitude of price changes over a number of blocks. However, one of the expressed goals of Uniswap V2 is to become a better price oracle, which I imagine includes smoothing out volatility over singular trades, so I assume such price over time tracking system is already being built.
+
+
+<blockquote class="twitter-tweet tw-align-center"><p lang="en" dir="ltr">.<a href="https://twitter.com/UniswapExchange?ref_src=twsrc%5Etfw">@UniswapExchange</a> doesn’t use price oracles because it IS a price oracle<br><br>Right now it’s only a useful (manipulation resistant) oracle for market makers on uniswap, but in V2 it will be useful for the rest of defi!<br><br>Uniswap v2 as a decentralized price oracle is gonna be🔥🔥🔥🔥🔥</p>&mdash; Hayden Adams 🦄 (@haydenzadams) <a href="https://twitter.com/haydenzadams/status/1199106007340867589?ref_src=twsrc%5Etfw">November 25, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
+In the future a Uniswap fee model could go from being fixed as ***Fee = 0.003 * tradesize*** *to being an arbitrary function of these variables: tradesize, slippage, volatility index. It could be something as advanced as this (a completely made up example):
+
+![](/images/medium/0*p0lLObjCnw64i14X.png)
+
+This may look daunting, but this complexity can be hidden from a user, as it generally already is in Uniswap interfaces. Meanwhile, it will provide better incentives for liquidity providers, thus improving the value delivered to users.
+
+Furthermore, new fee types can be added as well. For example, [Balancer proposes adding in an exit fee component](https://balancer.finance/whitepaper.html#swap-and-exit-fees) (a fee for removing liquidity from a pool). Or another example is differentiating trading fees in different directions. If demand for a pair like ETH:DAI tends to be larger in one direction, it may be possible to reduce the fees in the other direction to better incentivize rebalancing.
+
+### **Part 2: Uniswap Network**
+
+Great, now we have Uniswap DAOs with “on-chain governance” to be able to fine-tune curve algorithms and fee models. But what happens if you want to try out a new radical curve style or other deviation? Or you believe that the stakeholders are being too greedy, and that there is a better fee model that can attract more users, creating a positive sum for both users and liquidity providers. You’ve convinced a sufficient number of people, but not enough to win a governance vote. Well, there is a simple solution. Time to fork!
+
+Just like the ability to fork holds chain governance systems in check, the ability to fork Uniswap pools holds its governance systems in check. What this means practically is that in this model, there needn’t be only one liquidity pool per trading pair. Rather, we can have multiple liquidity pools even for the same trading pair. I call this the Uniswap Network — multiple Uniswap DAOs competing with each other in the free market.
+
+For example, two different ETH:DAI liquidity pools could co-exist and compete to find an optimal fee algorithm and curve structure to attract trading volume, while balancing the profit seeking motive of the liquidity providers. If one provides a better model or fee structure, more volume will switch to it, thus potentially earning more fees, and ultimately attracting more liquidity providers from the other pool.
+
+#### **Dividing Liquidity**
+
+One valid concern that pops up is that when we split liquidity for a single pair into multiple pools, the slippage of each pool increases, reducing the utility for users. There are two possible mitigations to this.
+
+The first is by splitting trades across multiple liquidity pools. When making a trade, users will most likely not interact with a specific liquidity pool directly, but will more likely go through a Uniswap Network aggregator service (something like Kyber) that dispatches their order request to the optimal liquidity pool. When doing this, it can automatically split the order into multiple smaller orders, dispatching different pieces to different pools, which can often result in lower slippage than executing against a single curve. The aggregator service will optimize for minimizing slippage for the user.
+
+The second mitigation makes use of that face that curves are now parameterizable. We can now create curves that offer less slippage, even at lower liquidities. For example, the Stableswap curve tries to reduce the convexity of the curve near the middle and increase it near the edges, thus providing less slippage for smaller trades.
+
+![](/images/medium/0*WB2lJYD_Dp7ZHbK4)
+*Image from Stableswap Whitepaper*
+
+This can be taken a step even further. In Part 1, we covered some of the variables that can be taken into account when designing fee models. However, we glossed over the design space of designing different curves. One avenue for exploration is taking into account the total liquidity in the pool in the curve structure. For example, a curve could be flatter (look more like the Stableswap curve) at low liquidities, and then increase the convexity as liquidity increases (move towards looking more like the uniswap curve).
+
+#### **Minimizing Exit Costs**
+
+What about bootstrapping new liquidity pools? You often need at least a minimum amount of liquidity to make a new liquidity pool viable. A minimum viable liquidity :D
+
+However, you might have people who are interested in this new pool, but no one wants to be the first to join the new pool. Because while it’s below its minimum viable liquidity, it won’t be usable and thus not profitable enough for liquidity providers to switch.
+
+Turns out this sounds extremely similar to a previous problem I once already solved! In the Cosmos SDK staking module, there is a maximum number of validators (125 currently) who are in the active set, and more in waiting. If the waiting validators can attract enough delegation, they can join the active set. As a delegator, I may want to delegate to one of those validators in waiting, but if I do and no one else does, then I won’t earn any staking rewards.
+
+To solve this, I created a solution called commitment tokens. Essentially, I can delegate to a validator in the Top 125, but give a commitment to the validator in waiting. As soon as the validator in waiting receives enough commitments that they would be in the top 125, it triggers an auto-redelegation of everyone who gave them a commitment to redelegate to them, thus pushing them into the active set. You can watch my presentation on commitment tokens in [this video starting at 15:23](https://youtu.be/XxZ04w2x4nk?t=923).
+
+<iframe src="https://www.youtube.com/embed/XxZ04w2x4nk?start=923" frameborder="0" allowfullscreen></iframe>
+
+---
+
+A similar mechanism can be created for the liquidity pools. When creating a new liquidity pool, I can propose a minimum viable liquidity as part of the curve specification, and allow people to issue commitments that will automatically switch their liquidity over to the new pool once it receives enough commitments.
+
+### **Conclusion**
+
+I hope this reimagining of a “Uniswap Network” as a network of DAOs controlling AMM parameters and competing to provide the best value to users was intriguing. In no way am I making an absolute statement that this is the optimal future direction for Uniswap-like systems (To be honest, I’m not even sure I’m fully convinced on automated market makers at all, but that’s a story for another time!), but rather want to bring this model up for discussion with the larger community. I’ve also cross-posted this on ethresear.ch [here](https://ethresear.ch/t/daoifying-uniswap-amm-pools/6945) which is a good place to discuss!
+
+---
+
+Thanks to [Hart Lambur](https://medium.com/u/29538529d8b7), Tina Zhen, [Felix Lutsch](https://medium.com/u/a19660effc53), [Dev Ojha](https://medium.com/u/24c27a199aad), and [billy rennekamp](https://medium.com/u/8d132487b5f3) for helping review :)
+
+  At UC Berkeley, there’s this super awesome program called Decals, in which students can teach for-credit courses (with the backing of a professor). I had co-taught the [Cryptocurrency Decal](https://blockchain.berkeley.edu/courses/fall-2019-fundamentals-decal/) for 2 semesters, which helped seed the Blockchain at Berkeley organization. After two semesters teaching it, I wanted to hand it off to a new generation of teachers. But I still really enjoyed teaching. And while the cryptocurrency decal was a large scale project with over 100 students, multiple teachers, etc, I wanted an opportunity to solo-teach a smaller, more intimate class.
+
+
+
+The semester prior, I had written a paper comparing Switzerland and Belgium (you can read that essay [here]({% post_url 2016-12-19-switzerland-and-belgium--two-approaches-to-a-multilingual-state %})), and after that I was a bit obsessed with the country. And so I decided to make that the topic of my class! I found a professor in the Institute of European Studies department, [Professor Jeroen DeWulf](https://ies.berkeley.edu/jeroen-dewulf), who graciously agreed to back the course. And we were off!
+
+So in Fall 2017, I taught the Switzerland Decal! Now, if you know a bit about my personal life timeline, you might notice that there’s something a bit odd about that. I had dropped out of university right before my Fall 2017 semester started! Which is true, but I had signed up to teach it the previous semester, when I was still a student and hadn’t planned on dropping out yet. So I taught the Decal class, as not a student 😄
+
+Here’s a link the [syllabus for the course](https://docs.google.com/document/d/1tlnqaZ2Zo6ICmKYxkFZh-RbXQHyFxNpnejFA_0skcyo/edit). On August 1 this year (Swiss National Day), I finally took the time to edit and upload (and even re-record one of) the lecture recordings from the course, which you can watch below.
+
+Also, if any current UC Berkeley student (or any other school that has a similar program) would like to restart this course, let me know, happy to share all my lecture materials!
+
+<iframe src="https://www.youtube.com/embed/gDxlvYVq4XM" frameborder="0" allowfullscreen></iframe>
+
+---
+
+<iframe src="https://www.youtube.com/embed/JZynJCrimSU" frameborder="0" allowfullscreen></iframe>
+
+---
+
+<iframe src="https://www.youtube.com/embed/UE1eddkM52Q" frameborder="0" allowfullscreen></iframe>
+
+---
+
+<iframe src="https://www.youtube.com/embed/waTT7drzuco" frameborder="0" allowfullscreen></iframe>
+
+---
+
+<iframe src="https://www.youtube.com/embed/dLY0EFG1Kfc" frameborder="0" allowfullscreen></iframe>
+
+---
+
+<iframe src="https://www.youtube.com/embed/Hdh-WDFPP6I" frameborder="0" allowfullscreen></iframe>
+
+---
+
+<iframe src="https://www.youtube.com/embed/aNU4hTNryhg" frameborder="0" allowfullscreen></iframe>
+
+---
+
+<iframe src="https://www.youtube.com/embed/HmaJa1DkUo4" frameborder="0" allowfullscreen></iframe>
+
+---
+
+P.S. Unfortunately the last lecture of the course wasn’t recorded, but in that we played Jeopardy! And the team that won, didn’t have to write a final paper! Never seen students try so hard in a game of in-class Jeopardy!
+
+![](/images/medium/1*n-E6ZqNp387pw9qy-3gX5g.jpeg){: .center-image .hero }![](/images/medium/1*iw-2in5XciinL2hx7h8BoQ.jpeg){: .center-image .hero }
+
+By this point, many of you are probably familiar with my issues with the “contract signaling” mechanism in the [Edgeware](http://edgewa.re) lockdrop. If not, feel free to optionally take a listen to [this Conspiratus episode](http://www.conspirat.us/144587/1563469-episode-7-hey-straightedge) or read the [Straightedge FAQ](https://straighted.ge/faq/). But tl;dr is that in the lockdrop, an Ethereum address was allowed to “signal” on behalf of any contract that they had deployed from that account and claim its ETH as their own.
+
+Prior to the launch of the lockdrop, when I asked about why contract deployers were able to claim tokens in contracts they deployed, one of of the e̶x̶c̶u̶s̶e̶s justifications given (not from the Commonwealth team) was that it rewards Ethereum developers who contributed valuable contracts to the Ethereum ecosystem. If I deployed a contract on Ethereum that has 2 million Ether in it, then I should be rewarded for creating a contract that is popular enough that there’s 2 million Ether sitting in it.
+
+However, not all important or popular contracts may necessarily require users depositing Ether into them. For example, the 0x contracts, help clear large amounts of trading volume, but don’t require that users deposit tokens into the contracts. Furthermore, not all interesting, useful, or important contracts necessarily involve depositing Ether. Compound for example has far more Dai in it than Ether, but I’m sure most would agree its a very important contract system. So what could we do to more accurately reward the stellar developers in the Ethereum ecosystem?
+
+#### Design
+
+ETH [may or may not be money.](https://www.youtube.com/watch?v=BMlRi3KrQRw) Not gonna get into that argument here. But what it definitely is, is the fuel for the Ethereum ecosystem. Ethereum users have to spend Ether as Gas to interact with contracts on the Ethereum network. The fact that they have spent something of value to make that interaction, suggests that the contract was providing a useful service to the user. Thus, I propose that a more effective way of determining which contracts are “useful” is basing it off of the gas spent on interacting with the contracts, rather than the amount of Ether sitting in them. So the more gas that was spent during the runtime of a specific contract over its entire lifetime on Ethereum, the more tokens the deployer of the contract would be entitled to claim in the gasdrop.
+
+Now, this is not possible to do in an on-chain mechanism, as the EVM doesn’t give you the capability to query historical data, especially something as specific as gas spent during execution of each contract. However, it’s okay, as the premise of this was to be used to seed the token distribution of a brand new chain, and so, in the same manner as Edgeware, this could be done using an off-chain script running against an archive node. This script could be openly published and thus is verifiable by anyone prior to the launch of the chain. (This process may even require some special traces added to the Ethereum node software, that is tracking gas usage per contract while syncing the chain, as I’m not sure even a normal archive node contains the sufficient data to construct this dataset.)
+
+#### From Gas Usage to Tx Fees
+
+Using this mechanism described so far, we are distributing tokens based on what percentage of total gas usage in Ethereum’s history was associated with that particular contract. Which could be how we would like to distribute the tokens. But in the case we want it to mirror not just the gas usage, but the value spent on interacting the contracts, we could also multiply the gas used by a contract with the gas cost of a tx. So for example, if the execution of contract X takes 1000 gas, and two transactions, A and B, interact with it with gas cost of 5 wei and 10 wei respectively, the contract X would now have 15000 tokens claimable.
+
+This more closely reflects the amount of value users were willing to spend interacting with a contract. However, this is now measuring value denominated in ETH that was spent interacting with each contract. However, we can see that [over time, the average gas price on Ethereum drops](https://etherscan.io/chart/gasprice). This is likely because as the price of ETH increases, the gas price in wei can drop, as the real value (USD value) of each wei increases. To account for this, we can use a third model, which also takes into account the ETH/USD price as the time of the interaction with a contract. Now, we are actually measuring the real value that was spent interacting with the contract. The gasdrop community would have to agree upon a canonical source of Ethereum price data (or take a combination of a number of sources. For example, [Etherscan](https://etherscan.io/chart/etherprice), [Coindesk](https://www.coindesk.com/price/ethereum), [CoinTelegraph](https://cointelegraph.com/ethereum-price-index), [CoinMarketCap](https://coinmarketcap.com/currencies/ethereum/historical-data/?start=20130428&end=20191119), and even [Yahoo Finance](https://finance.yahoo.com/quote/ETH-USD/history/) all have downloadable CSV datasets.)
+
+*Model 1: Gas Spent  
+Model 2: Gas Spent * Gas Price  
+Model 3: Gas Spent * Gas Price * USD/ETH*
+
+Which of the three models to use is up to creator of the gasdrop.
+
+#### Conclusion
+
+The gasdrop system will effectively achieve the goal of “reward[ing] Ethereum developers who contributed valuable contracts to the Ethereum ecosystem”, in a far more effective way than the contract signaling method of Edgeware did (if that was the goal).
+
+Now often, when someone proposes a cool idea for a new concept, they’ll usually also end with, “And here’s some code I wrote to do this! Here’s the results.” This isn’t one of those.
+
+I haven’t actually run this process on Ethereum and collected the *gas usage / contract* data, but I think it would a really cool experiment for someone to do and seed a token distribution for a new Cosmos chain for example!
+
+P.S. What do we do about all the gas that was spent on Ethereum that wasn’t used to interact with a contract? Two options: 1. We could just ignore it. Or 2. we could give it to entities like the Ethereum Foundation or Parity for their work in developing the core software of Ethereum!
+
+  Earlier this year, [Commonwealth Labs](https://commonwealth.im) built a project called [Edgeware](https://edgewa.re/). In it, they used a pretty novel distribution mechanism called a Lockdrop. Unlike an ICO, participants in the lockdrop did not have to buy the EDGE tokens in exchange for money (or an existing valuable token like ETH). But unlike an airdrop, they also didn’t receive EDGE tokens *for free*. Instead, they locked up their ETH tokens in the a special smart contract, and received EDGE tokens in the Edgeware genesis block based on how long they locked up their tokens.
+
+The premise here was that the people who were receiving the EDGE tokens had to make an action to earn the tokens. They had some level of investment (unlike random airdrop recipients) because they had an opportunity cost to locking up the Ether, everything else they could have done with the Ether (i.e. sell, lend, gamble, etc). The lockdrop was pretty unarguably a success. Over 1.199 million Ether was locked (over 1% of the supply), and over 5 million participated in total (including signalling). However, something bugged me about this lockdrop method.
+
+---
+
+*Well actually, a couple of things disturbed me about the Edgeware lockdrop. Which led me to fork it into the [Straightedge](http://straighted.ge) project. You can learn about the origins of this split in the [Straightedge FAQ](https://straighted.ge/faq/) and [this Conspiratus episode](http://www.conspirat.us/144587/1563469-episode-7-hey-straightedge). But that’s not what this post is about.*
+
+---
+
+Even if there wasn’t the shenanigans around the contract signalling, there was something else I found odd in the concept of the lockdrop. Yes, there was an opportunity cost for the lockdrop participants, but where was this opportunity cost going? The development team wasn’t benefiting at all from people locking tokens, and clearly the lockers weren’t either. So who was?
+
+The answer: *Everyone who ****didn’t**** participate in the lockdrop.*
+
+The base opportunity cost of locking up the Ether, can actually be quantified. The Compound protocol [markets itself as the risk-free interest rate](https://epicenter.tv/episode/295/) on Ethereum. At the moment of this writing, the Borrow APR on Compound for Ether is roughly 0.05%. Not particularly high, but still non-zero. After all, it is the *risk-free* rate. It is much higher for something like DAI.
+
+But essentially what is happening, is by locking up Ether in the lockdrop, the supply of liquid Ether in the market goes down, pushing up interest rates. The beneficiaries of this increase is all the holders of liquid Ether (i.e. non-lockdrop participants) because they can now earn a higher yield on their lent Ether if they choose to do so.
+
+This is odd, this seems like the wrong group of people to be rewarding, the ones who didn’t participate in the lockdrop and have nothing to do with Edgeware. Instead, it would be nice if we could shift that value from going to non-participants towards someone like the Commonwealth team. The simple change is that instead of just leaving the lockdrop Ether idle for lock period (3–12 months), we can instead pool all of the Ether that has been locked and lend it out on Compound. The interest earned would be given to the project developers (i.e. Commonwealth) to help fund development while the principal amount would still be returned to the lockdrop participants. The participants of the lockdrop would still be subject to the locking period, in that they cannot withdraw their principal until after the time they chose to lock for has elapsed.
+
+Edgeware and Straightedge were an amazing initial experiment to see how lockdrops work, and the participation was a resounding success. As more chains execute lockdrops to seed distributions, we’ll hopefully see more iterations on how to make the process even better. By adding this “yield redirecting to development teams” mechanism, we will hopefully make lockdrops a more attractive distribution mechanism for dev teams and increase participation as lockers feel their lost opportunity cost is going to benefit the project they are trying to support. In fact, [Tendermint](https://medium.com/u/8495ad98b2a1) is working with Commonwealth Labs to build a platform to do exactly this! Stay tuned!
+
+---
+
+*Note: I think this mechanism described here is just one variety of a number of new ways to allocate a new token distribution while concurrently funding protocol developers. Another example I’ve been thinking about it called the Initial Delegation Offering (IDOs as opposed to [Initial Exchange Offerings — IEOs](https://cryptopotato.com/what-is-an-initial-exchange-offering-ieo-and-how-it-differs-from-ico/)). In it, a project development team would run a validator on a large Proof of Stake chain like the Cosmos Hub, with a relatively higher commission rate (the amount of staking rewards they take a cut of), and then accept delegation. The longer a delegator delegates to the validator, they earn more of the project’s new token. Meanwhile, the development team gets some working capital from the high commission rate on delegated coins.*Here’s a recording of a talk I gave at the inaugural Interledger Summit in April 2019, talking about some the synergies between Cosmos’s IBC system and Interledger, as well as some ideas for how to improve Cosmos multi-chain fees using payment channels.
+
+<iframe src="https://www.youtube.com/embed/Lr6gRsiOn4o" frameborder="0" allowfullscreen></iframe>
+
+
+  In this episode of Conspiratus recorded live at [ZCon1](https://www.zfnd.org/blog/zcon1-announcement/), the ZCash conference, Sunny sits down with [Drew Stone](https://medium.com/u/8737ab895ddf) of [Commonwealth](https://commonwealth.im/) to discuss [Edgeware](https://edgewa.re/), governance of ZCash, and the implications of Facebook’s new Libra project.
+
+<iframe src="https://www.youtube.com/embed/krQXa12KpSI" frameborder="0" allowfullscreen></iframe>
+New episode, who dis? We discuss:
+
+* Social contracts of different chains and how that affects legitmacy of forks
+* Social capital and influence held by entities like [Parity Technologies](https://medium.com/u/433b0bc6fa9e), [MakerDAO](https://medium.com/u/743224aba00c), and core developers
+* [Cosmos Network](https://medium.com/u/e8cb21d22b0b) multi-chain governance paradigm
+
+<iframe src="https://www.youtube.com/embed/Il5JRLkoDxQ" frameborder="0" allowfullscreen></iframe>
+
+  New episode of Conspiratus hot off the presses! We discuss some of the latest current events on the Cosmos Hub, including the recent security patch hard fork, the Google Cloud downtime that affected many validators, and some general discussion around Cosmos governance.
+
+<iframe src="https://www.youtube.com/embed/0O30RNFXtw0" frameborder="0" allowfullscreen></iframe>
+
+Also available on your favorite podcast app!After a 1 year-hiatus, we’re finally back! In this episode of Conspiratus, we explain some of the causes of the break, what we’ve been doing in that time, and our plans for the future of Conspiratus!
+
+<iframe src="https://www.youtube.com/embed/8yCD3a1Izhw" frameborder="0" allowfullscreen></iframe>
+
+Available on iTunes, Google Play, Spotify, and Pocket Casts!  Coinciding with a [number of admissions scandals around the US](https://en.wikipedia.org/wiki/2019_college_admissions_bribery_scandal), I was spending some time this last weekend with my cousin at the [University of Cambridge](https://medium.com/u/b9253454b93d).  
+
+I was chatting with him about the admissions process and the general educational style there, and I got the sense that elite European universities seem to be much more meritocratic than their American counterparts.
+
+And a [brief Wikipedia skim](https://en.wikipedia.org/wiki/Legacy_preferences) seems to confirm my suspicions: Legacy admissions seems to be largely an American phenomenon.
+
+Now, I’ve basically done no research nor collected any evidence for this, but here’s my hypothesis as to the origin of this:
+
+In America, when we got rid of formalized aristocracy, the elites still needed a way to pass down social status to their children. However, they couldn’t do it using titles of nobility anymore. And so, they created elite universities, where they filled part of the class with the brightest students and then part of the class with their own children. Mixed them all together and gave them all the same Harvard (or Yale or etc) degree. So you can’t tell the difference!
+
+Like I said, I’ve done very little research into this subject, and this was just my starting conjecture before starting to dive into the topic. I think to start delving into the topic, this book: [The Power of Privilege: Yale and America’s Elite Colleges](https://www.amazon.com/Power-Privilege-Americas-Elite-Colleges/dp/0804756384) seems like a good starting point.
+
+If anyone have any other good materials on the topic, please let me know in the comments!
+
+Also, on a related note, here’s [an interesting article from Elaine Ou](https://elaineou.com/2019/03/13/this-is-what-meritocracy-looks-like) presenting a very interesting contrary point of view on the topic! -->
+
+
+
+
+
 
   
-    <article class="post hentry category">
+    <article class="post hentry category page-category">
   <div class="post-media">
-      <a href="/blog/an-exposition-on-robotics-competitions" rel="bookmark">
+      <a href="/blog/citizen-cosmos" rel="bookmark">
           <figure class="post-figure">
-              <img src="/images/medium/1*d6QCsUuxbR9BFk6_2bzxsA.jpeg" alt="An Exposition on Robotics Competitions">
+              <img src="/images/blog/citizen-cosmos.jpg" alt="Citizen Cosmos">
           </figure>
       </a>
   </div>
 
   <div class="padd-box-sm">
       <header class="post-header text-center">
-          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/an-exposition-on-robotics-competitions">An Exposition on Robotics Competitions</a>
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/citizen-cosmos">Citizen Cosmos</a>
           </h2>
 
           <div class="post-header-info">
                           <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
-                            <time class="post-date published" datetime="">Jun 04, 2014</time>
-                            <time class="post-date updated" datetime="">Jun 04, 2014</time>
+                            <time class="post-date published" datetime="">Jun 14, 2020</time>
+                            <time class="post-date updated" datetime="">Jun 14, 2020</time>
                           </a></span>
               &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
                                                           rel="author">Sunny Aggarwal</a></span>
           </div>
       </header>
 
-      <!-- So far in my robotics career, I have participated in numerous robotics competition...</p>
+      <!-- A few weeks ago, I was invited on the Citizen Cosmos podcast where I chatted with ...</p>
         </div>
        -->
 
       <footer class="post-footer">
-          <div class="post-footer-top brd-btm clearfix">
+          <div class="post-footer-top clearfix">
               <div class="post-footer-info">
                 
                   <span class="post-cat-links">
                     <span class="screen-reader-text">Categories</span>
                     
-                      <a href="/blog/tag/Technology" rel="category tag">Technology</a>&nbsp;,&nbsp;
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
                     
-                      <a href="/blog/tag/Education" rel="category tag">Education</a>&nbsp;,&nbsp;
+                      <a href="/blog/tag/Cosmos" rel="category tag">Cosmos</a>&nbsp;,&nbsp;
                     
                   </span>
                 
               </div>
 
               <div class="post-more">
-                  <a class="btn btn-sm btn-primary" href="/blog/an-exposition-on-robotics-competitions" rel="bookmark">Read More</a>
+                  <a class="btn btn-sm btn-primary" href="/blog/citizen-cosmos" rel="bookmark">Read More</a>
               </div>
           </div>
       </footer>
@@ -275,49 +969,51 @@
 </article>
 <!-- .post -->
   
-    <article class="post hentry category">
+    <article class="post hentry category page-category">
   <div class="post-media">
-      <a href="/blog/ios-7-is-good-but-still-not-better-than-android" rel="bookmark">
+      <a href="/blog/hamilton-2-0" rel="bookmark">
           <figure class="post-figure">
-              <img src="/images/medium/1*BeXpVYDPJRsc9Pgkqs3vpQ.jpeg" alt="iOS 7 is good, but still not better than Android">
+              <img src="/images/blog/Ftrk2JH9uMQWnvs5hjNaE8-2560-80.jpg" alt="Hamilton 2.0">
           </figure>
       </a>
   </div>
 
   <div class="padd-box-sm">
       <header class="post-header text-center">
-          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/ios-7-is-good-but-still-not-better-than-android">iOS 7 is good, but still not better than Android</a>
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/hamilton-2-0">Hamilton 2.0</a>
           </h2>
 
           <div class="post-header-info">
                           <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
-                            <time class="post-date published" datetime="">Aug 15, 2013</time>
-                            <time class="post-date updated" datetime="">Aug 15, 2013</time>
+                            <time class="post-date published" datetime="">Jun 01, 2020</time>
+                            <time class="post-date updated" datetime="">Jun 01, 2020</time>
                           </a></span>
               &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
                                                           rel="author">Sunny Aggarwal</a></span>
           </div>
       </header>
 
-      <!-- Finally after years of playing catch-up, Apple has finally brought many long-time ...</p>
+      <!-- A few weeks ago, my roommate and I were having a discussing the hit musical Hamilt...</p>
         </div>
        -->
 
       <footer class="post-footer">
-          <div class="post-footer-top brd-btm clearfix">
+          <div class="post-footer-top clearfix">
               <div class="post-footer-info">
                 
                   <span class="post-cat-links">
                     <span class="screen-reader-text">Categories</span>
                     
-                      <a href="/blog/tag/Technology" rel="category tag">Technology</a>&nbsp;,&nbsp;
+                      <a href="/blog/tag/History," rel="category tag">History,</a>&nbsp;,&nbsp;
+                    
+                      <a href="/blog/tag/Literary" rel="category tag">Literary</a>&nbsp;,&nbsp;
                     
                   </span>
                 
               </div>
 
               <div class="post-more">
-                  <a class="btn btn-sm btn-primary" href="/blog/ios-7-is-good-but-still-not-better-than-android" rel="bookmark">Read More</a>
+                  <a class="btn btn-sm btn-primary" href="/blog/hamilton-2-0" rel="bookmark">Read More</a>
               </div>
           </div>
       </footer>
@@ -325,37 +1021,188 @@
 </article>
 <!-- .post -->
   
-    <article class="post hentry category">
+    <article class="post hentry category page-category">
   <div class="post-media">
-      <a href="/blog/the-tipping-point-by-malcolm-gladwell-ch-1" rel="bookmark">
+      <a href="/blog/monetizing-smart-contracts-with-gastoken" rel="bookmark">
           <figure class="post-figure">
-              <img src="/images/medium/1*fpX7C4visjglw2B-1a2iEw.jpeg" alt="The Tipping Point by Malcolm Gladwell — Ch 1">
+              <img src="/images/medium/1*q5f-WWlINt_ru952H6GYMQ.png" alt="Monetizing Smart Contracts with GasToken">
           </figure>
       </a>
   </div>
 
   <div class="padd-box-sm">
       <header class="post-header text-center">
-          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/the-tipping-point-by-malcolm-gladwell-ch-1">The Tipping Point by Malcolm Gladwell — Ch 1</a>
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/monetizing-smart-contracts-with-gastoken">Monetizing Smart Contracts with GasToken</a>
           </h2>
 
           <div class="post-header-info">
                           <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
-                            <time class="post-date published" datetime="">Aug 13, 2013</time>
-                            <time class="post-date updated" datetime="">Aug 13, 2013</time>
+                            <time class="post-date published" datetime="">Apr 07, 2020</time>
+                            <time class="post-date updated" datetime="">Apr 07, 2020</time>
                           </a></span>
               &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
                                                           rel="author">Sunny Aggarwal</a></span>
           </div>
       </header>
 
-      <!-- 
-  “The idea that epidemics can rise or fall in one dramatic moment…per mits the g...</p>
+      <!-- While ruminating on my [Gasdrop idea]({% post_url 2019-11-19-gasdrop %}) from a fe...</p>
         </div>
        -->
 
       <footer class="post-footer">
-          <div class="post-footer-top brd-btm clearfix">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/monetizing-smart-contracts-with-gastoken" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/war-on-different-scales-addendum-the-etc-midgame" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/0*o4i_ZXiTtzzWTMlj" alt="War on Different Scales Addendum — The ETC Midgame">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/war-on-different-scales-addendum-the-etc-midgame">War on Different Scales Addendum — The ETC Midgame</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Apr 05, 2020</time>
+                            <time class="post-date updated" datetime="">Apr 05, 2020</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- Addendum to my previous post: [War on Different Scales]({% post_url 2020-04-03-war...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/war-on-different-scales-addendum-the-etc-midgame" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/war-on-different-scales" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/1*Awaq-1X_xhJkzWPVWfP3nw.png" alt="War on Different Scales">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/war-on-different-scales">War on Different Scales</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Apr 03, 2020</time>
+                            <time class="post-date updated" datetime="">Apr 03, 2020</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- So I don’t remember where I originally saw this, and can’t for the life of me refi...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/History" rel="category tag">History</a>&nbsp;,&nbsp;
+                    
+                      <a href="/blog/tag/Politics" rel="category tag">Politics</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/war-on-different-scales" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/esmeralda-of-the-wolves" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/1*H7cU7nrGDVyl-rEijfBiYw.png" alt="Esmeralda of the Wolves">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/esmeralda-of-the-wolves">Esmeralda of the Wolves</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Mar 20, 2020</time>
+                            <time class="post-date updated" datetime="">Mar 20, 2020</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- While surfing YouTube a few days ago, I somehow found myself watching deleted scen...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
               <div class="post-footer-info">
                 
                   <span class="post-cat-links">
@@ -368,7 +1215,7 @@
               </div>
 
               <div class="post-more">
-                  <a class="btn btn-sm btn-primary" href="/blog/the-tipping-point-by-malcolm-gladwell-ch-1" rel="bookmark">Read More</a>
+                  <a class="btn btn-sm btn-primary" href="/blog/esmeralda-of-the-wolves" rel="bookmark">Read More</a>
               </div>
           </div>
       </footer>
@@ -376,42 +1223,49 @@
 </article>
 <!-- .post -->
   
-    <article class="post hentry category">
+    <article class="post hentry category page-category">
   <div class="post-media">
-      <a href="/blog/lessons-from-a-guy-in-a-hot-tub" rel="bookmark">
+      <a href="/blog/generalized-slashing-slash-people-not-coins" rel="bookmark">
           <figure class="post-figure">
-              <img src="/images/medium/1*X5NqDJj-SOHz8eBQgE28jg.jpeg" alt="Lessons From a Guy in a Hot Tub">
+              <img src="/images/medium/1*u8s6B2IDf1OtDF8gFRVkWQ.jpeg" alt="Generalized Slashing — Slash People, Not Coins">
           </figure>
       </a>
   </div>
 
   <div class="padd-box-sm">
       <header class="post-header text-center">
-          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/lessons-from-a-guy-in-a-hot-tub">Lessons From a Guy in a Hot Tub</a>
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/generalized-slashing-slash-people-not-coins">Generalized Slashing — Slash People, Not Coins</a>
           </h2>
 
           <div class="post-header-info">
                           <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
-                            <time class="post-date published" datetime="">Jul 18, 2013</time>
-                            <time class="post-date updated" datetime="">Jul 18, 2013</time>
+                            <time class="post-date published" datetime="">Mar 19, 2020</time>
+                            <time class="post-date updated" datetime="">Mar 19, 2020</time>
                           </a></span>
               &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
                                                           rel="author">Sunny Aggarwal</a></span>
           </div>
       </header>
 
-      <!-- This last week I was at the FBLA National Leadership Conference in Anaheim, CA. My...</p>
+      <!-- **THIS IS A THOUGHT EXPERIMENT ABOUT A NOVEL BLOCKCHAIN MECHANISM DESIGN. I DO NOT...</p>
         </div>
        -->
 
       <footer class="post-footer">
-          <div class="post-footer-top brd-btm clearfix">
+          <div class="post-footer-top clearfix">
               <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
                 
               </div>
 
               <div class="post-more">
-                  <a class="btn btn-sm btn-primary" href="/blog/lessons-from-a-guy-in-a-hot-tub" rel="bookmark">Read More</a>
+                  <a class="btn btn-sm btn-primary" href="/blog/generalized-slashing-slash-people-not-coins" rel="bookmark">Read More</a>
               </div>
           </div>
       </footer>
@@ -419,42 +1273,49 @@
 </article>
 <!-- .post -->
   
-    <article class="post hentry category">
+    <article class="post hentry category page-category">
   <div class="post-media">
-      <a href="/blog/welcome" rel="bookmark">
+      <a href="/blog/the-17th-amendment-killed-federalism" rel="bookmark">
           <figure class="post-figure">
-              <img src="/images/medium/1*v2xjXHMjVL1h_LBmix5djA.jpeg" alt="Welcome!">
+              <img src="/images/medium/1*097eQ7qKySwxKK263AoOFA.png" alt="The 17th Amendment killed Federalism">
           </figure>
       </a>
   </div>
 
   <div class="padd-box-sm">
       <header class="post-header text-center">
-          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/welcome">Welcome!</a>
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/the-17th-amendment-killed-federalism">The 17th Amendment killed Federalism</a>
           </h2>
 
           <div class="post-header-info">
                           <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
-                            <time class="post-date published" datetime="">Jun 30, 2013</time>
-                            <time class="post-date updated" datetime="">Jun 30, 2013</time>
+                            <time class="post-date published" datetime="">Mar 12, 2020</time>
+                            <time class="post-date updated" datetime="">Mar 12, 2020</time>
                           </a></span>
               &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
                                                           rel="author">Sunny Aggarwal</a></span>
           </div>
       </header>
 
-      <!-- Welcome to my blog where I will write about random ideas and thoughts that pop int...</p>
+      <!-- Well, not really. The expansion of Federal power at the expense of State’s rights,...</p>
         </div>
        -->
 
       <footer class="post-footer">
-          <div class="post-footer-top brd-btm clearfix">
+          <div class="post-footer-top clearfix">
               <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/History" rel="category tag">History</a>&nbsp;,&nbsp;
+                    
+                  </span>
                 
               </div>
 
               <div class="post-more">
-                  <a class="btn btn-sm btn-primary" href="/blog/welcome" rel="bookmark">Read More</a>
+                  <a class="btn btn-sm btn-primary" href="/blog/the-17th-amendment-killed-federalism" rel="bookmark">Read More</a>
               </div>
           </div>
       </footer>
@@ -462,7 +1323,510 @@
 </article>
 <!-- .post -->
   
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/daoifying-uniswap-automated-market-maker-pools" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/1*TaaKbf2-kiKZtBd9oADodg.jpeg" alt="DAOifying Uniswap Automated Market Maker Pools">
+          </figure>
+      </a>
+  </div>
 
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/daoifying-uniswap-automated-market-maker-pools">DAOifying Uniswap Automated Market Maker Pools</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Feb 13, 2020</time>
+                            <time class="post-date updated" datetime="">Feb 13, 2020</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- Over the past two years, Uniswap has become one of the most popular decentralized ...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/daoifying-uniswap-automated-market-maker-pools" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/switzerland-decal-lectures" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/1*n-E6ZqNp387pw9qy-3gX5g.jpeg" alt="Switzerland Decal Lectures">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/switzerland-decal-lectures">Switzerland Decal Lectures</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Nov 21, 2019</time>
+                            <time class="post-date updated" datetime="">Nov 21, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- At UC Berkeley, there’s this super awesome program called Decals, in which student...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/History" rel="category tag">History</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/switzerland-decal-lectures" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/gasdrop" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/1*iw-2in5XciinL2hx7h8BoQ.jpeg" alt="Gasdrop">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/gasdrop">Gasdrop</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Nov 19, 2019</time>
+                            <time class="post-date updated" datetime="">Nov 19, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- ![](/images/medium/1*iw-2in5XciinL2hx7h8BoQ.jpeg){: .center-image .hero }
+
+By this...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/gasdrop" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/fixing-the-lockdrop" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/1*YPL-EeVxzzU4I270CYHbrw.png" alt="Fixing the Lockdrop">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/fixing-the-lockdrop">Fixing the Lockdrop</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Nov 08, 2019</time>
+                            <time class="post-date updated" datetime="">Nov 08, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- Earlier this year, [Commonwealth Labs](https://commonwealth.im) built a project ca...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/fixing-the-lockdrop" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/cosmos-interledger" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/1*g5Ikczvurngf4kRxSyig_Q.png" alt="Cosmos ❤ Interledger">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/cosmos-interledger">Cosmos ❤ Interledger</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Sep 23, 2019</time>
+                            <time class="post-date updated" datetime="">Sep 23, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- Here’s a recording of a talk I gave at the inaugural Interledger Summit in April 2...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/cosmos-interledger" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/conspiratus-podcast-5-zebras-and-libras" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/conspiratus/youtube_thumbnail_5.jpg" alt="Conspiratus Podcast #5: Zebras and Libras">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/conspiratus-podcast-5-zebras-and-libras">Conspiratus Podcast #5: Zebras and Libras</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Jul 03, 2019</time>
+                            <time class="post-date updated" datetime="">Jul 03, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- In this episode of Conspiratus recorded live at [ZCon1](https://www.zfnd.org/blog/...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/conspiratus-podcast-5-zebras-and-libras" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/conspiratus-podcast-4-social-contracts-and-social-capital" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/conspiratus/youtube_thumbnail_4.jpg" alt="Conspiratus Podcast #4: Social Contracts and Social Capital">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/conspiratus-podcast-4-social-contracts-and-social-capital">Conspiratus Podcast #4: Social Contracts and Social Capital</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Jun 07, 2019</time>
+                            <time class="post-date updated" datetime="">Jun 07, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- New episode, who dis? We discuss:
+
+* Social contracts of different chains and how ...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/conspiratus-podcast-4-social-contracts-and-social-capital" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/conspiratus-podcast-3-a-cosmic-commotion" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/conspiratus/youtube_thumbnail_3.jpg" alt="Conspiratus Podcast #3: A Cosmic Commotion">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/conspiratus-podcast-3-a-cosmic-commotion">Conspiratus Podcast #3: A Cosmic Commotion</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Jun 04, 2019</time>
+                            <time class="post-date updated" datetime="">Jun 04, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- New episode of Conspiratus hot off the presses! We discuss some of the latest curr...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/conspiratus-podcast-3-a-cosmic-commotion" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/conspiratus-podcast-2-the-elephant-in-the-room" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/conspiratus/8yCD3a1Izhwhd.png" alt="Conspiratus Podcast #2: The Elephant in the Room">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/conspiratus-podcast-2-the-elephant-in-the-room">Conspiratus Podcast #2: The Elephant in the Room</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Apr 08, 2019</time>
+                            <time class="post-date updated" datetime="">Apr 08, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- After a 1 year-hiatus, we’re finally back! In this episode of Conspiratus, we expl...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Blockchain" rel="category tag">Blockchain</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/conspiratus-podcast-2-the-elephant-in-the-room" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
+    <article class="post hentry category page-category">
+  <div class="post-media">
+      <a href="/blog/legacy-and-american-universities" rel="bookmark">
+          <figure class="post-figure">
+              <img src="/images/medium/1*1MPge6VXY5df5gJNJrBd_A.jpeg" alt="Legacy and American Universities">
+          </figure>
+      </a>
+  </div>
+
+  <div class="padd-box-sm">
+      <header class="post-header text-center">
+          <h2 class="post-title entry-title text-upper"><a rel="bookmark" href="/blog/legacy-and-american-universities">Legacy and American Universities</a>
+          </h2>
+
+          <div class="post-header-info">
+                          <span class="posted-on"><span class="screen-reader-text">Posted on </span><a rel="bookmark">
+                            <time class="post-date published" datetime="">Mar 29, 2019</time>
+                            <time class="post-date updated" datetime="">Mar 29, 2019</time>
+                          </a></span>
+              &nbsp;<span class="post-author vcard">by <a class="url fn n" href=""
+                                                          rel="author">Sunny Aggarwal</a></span>
+          </div>
+      </header>
+
+      <!-- Coinciding with a [number of admissions scandals around the US](https://en.wikiped...</p>
+        </div>
+       -->
+
+      <footer class="post-footer">
+          <div class="post-footer-top clearfix">
+              <div class="post-footer-info">
+                
+                  <span class="post-cat-links">
+                    <span class="screen-reader-text">Categories</span>
+                    
+                      <a href="/blog/tag/Politics" rel="category tag">Politics</a>&nbsp;,&nbsp;
+                    
+                  </span>
+                
+              </div>
+
+              <div class="post-more">
+                  <a class="btn btn-sm btn-primary" href="/blog/legacy-and-american-universities" rel="bookmark">Read More</a>
+              </div>
+          </div>
+      </footer>
+  </div>
+</article>
+<!-- .post -->
+  
 
 
     </main> 
@@ -693,13 +2057,13 @@
 
 <script type="text/javascript" src="/assets/js/plugins.min.js"></script>
 <script type="text/javascript" src="/assets/js/theme.min.js"></script>
-
+<!-- 
 <script>
   var base_url = "",
-    pagination_next_url = base_url + '/page2',
-    pagination_next_page_number = '',
+    pagination_next_url = base_url + '/blog/2',
+    pagination_next_page_number = '2',
     pagination_available_pages_number = '6';
-</script>
+</script> -->
 
   <svg id="crt-bg-shape-1" class="hidden-sm hidden-xs" height="519" width="758">
     <polygon class="pol" points="0,455,693,352,173,0,92,0,0,71"/>

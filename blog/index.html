@@ -1,16 +1,32 @@
 ---
 layout: default
 title: Blog
-permalink: /blog/
+<!-- permalink: /blog/ -->
 ---
 
 <header class="page-header padd-box">
   <h1 class="title-lg text-upper">Blog</h1>
 </header>
 
+{{ paginator.total_posts }}
+
+{{ paginator.page }}
+{{ paginator.total_pages }}
+
+{{paginator.next_page_path}}
+
+{{paginator.previous_page_path}}
+
+{{paginator.per_page}}
+
+<!-- {{paginator.posts}} -->
+
+
+
+
+
 {% if site.posts.size > 0 %}
   {% for post in paginator.posts %}
     {% include article-content.html %}
   {% endfor %}
 {% endif %}
-

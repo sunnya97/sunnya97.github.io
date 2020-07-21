@@ -71,7 +71,7 @@ plugins:
   - jekyll-sitemap
 
 paginate: 18
-paginate_path: "/blog/page:num/"
+paginate_path: "/blog/:num"
 
 # Pages Path
 defaults:
