@@ -16,6 +16,13 @@ permalink: /disclosures/
 - [Kava Labs](https://www.kava.io/)
 - [Citadel.one](https://citadel.one/)
 
+### LP in Funds
+- [UTXO Management](https://www.utxo.management/)
+- [Interop Ventures](https://interop.ventures/)
+- [SHL Capital](https://angel.co/shl/syndicate)
+- [Delphi InfiNFT](https://syndicate.io/syndicate/delphi_infinft)
+- [Byzantine Ventures](https://byzantine.ventures/)
+
 ### Private Investments
 - [Anoma](https://anoma.net/)
 - [Dawn Analytics](https://www.dawnai.com/)
@@ -48,13 +55,6 @@ permalink: /disclosures/
 - [Desmos](https://www.desmos.network/)
 - [Shiftup](https://shiftup.tech)
 - [Mercury](https://mercury.com/)
-
-### LP in Funds
-- [UTXO Management](https://www.utxo.management/)
-- [Interop Ventures](https://interop.ventures/)
-- [SHL Capital](https://angel.co/shl/syndicate)
-- [Delphi InfiNFT](https://syndicate.io/syndicate/delphi_infinft)
-- [Byzantine Ventures](https://byzantine.ventures/)
 
 ### Other Major Token Holdings (not through private investments/advisorships):
 - [Osmosis (OSMO)](https://osmosis.zone/)
