@@ -61,15 +61,16 @@ permalink: /disclosures/
 ### Other Major Token Holdings (not through private investments/advisorships):
 - [Osmosis (OSMO)](https://osmosis.zone/)
 - [Bitcoin (BTC)](https://bitcoin.org/bitcoin.pdf)
-- [Ether (ETH)](https://ethereum.org/)
-- [Ion (ION)](http://ion.wtf/)
-- [Cosmos Hub (ATOM)](https://hub.cosmos.network/)
+- [Thorchain (RUNE)](https://thorchain.com/)
+- [Bad Kids (BAD)](https://badkids.com/)
+- [Mad Scientists (MAD)](https://www.madscientists.io/)
+- [Solana (SOL)](https://solana.com/)
 - [Dogecoin (DOGE)](https://en.wikipedia.org/wiki/Dogecoin)
 - [MakerDAO (MKR)](https://makerdao.com/en/)
-- [Treasure (MAGIC)](https://treasure.lol/)
-- [Solana (SOL)](https://solana.com/)
+- [Ion (ION)](http://ion.wtf/)
+- [Ether (ETH)](https://ethereum.org/)
+- [Cosmos Hub (ATOM)](https://hub.cosmos.network/)
 - [Elrond (EGLD)](https://elrond.com/)
-- [Wyvern (WYV)](https://wyvernprotocol.com/)
 
 ### Past Engagements:
 - [All in Bits inc.](https://tendermint.com/about) (d.b.a. Tendermint)
