@@ -19,6 +19,7 @@ permalink: /disclosures/
 
 ### LP in Funds
 - [UTXO Management](https://www.utxo.management/)
+- [Frachtis](https://frachtis.com/)
 - [Interop Ventures](https://interop.ventures/)
 - [SHL Capital](https://angel.co/shl/syndicate)
 - [Delphi InfiNFT](https://syndicate.io/syndicate/delphi_infinft)
@@ -66,6 +67,7 @@ permalink: /disclosures/
 - [Mad Scientists (MAD)](https://www.madscientists.io/)
 - [Solana (SOL)](https://solana.com/)
 - [Dogecoin (DOGE)](https://en.wikipedia.org/wiki/Dogecoin)
+- [Thorchain (RUNE)](https://thorchain.net/)
 - [MakerDAO (MKR)](https://makerdao.com/en/)
 - [Ion (ION)](http://ion.wtf/)
 - [Ether (ETH)](https://ethereum.org/)
